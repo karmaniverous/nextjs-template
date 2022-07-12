@@ -45,3 +45,25 @@ non-negotiable, for reasons that will become obvious in step 2 below.
    so they are safe for environmental secrets!
 6. Start the development server by running `npm run dev`.
 7. Visit the web application at http://localhost:3000.
+
+## Deploying to Vercel?
+
+Connect your preview environment to the `preview` branch.
+
+See the `NEXT_PUBLIC_COMING_SOON` environment variable in
+[`.env.production`](https://github.com/karmaniverous/template-nextjs/blob/30f0214cd493c10c66ec3e3440db0e66d7148302/.env.production).
+When this value is `1`, your production environment (`main` branch) will display
+your
+[`coming-soon`](https://github.com/karmaniverous/template-nextjs/blob/30f0214cd493c10c66ec3e3440db0e66d7148302/pages/coming-soon.jsx)
+page and your preview environment (preview branch) will always display your
+site.
+
+Set `NEXT_PUBLIC_COMING_SOON` to `1` in
+[`.env.development`](https://github.com/karmaniverous/template-nextjs/blob/30f0214cd493c10c66ec3e3440db0e66d7148302/.env.development)
+to view your
+[`coming-soon`](https://github.com/karmaniverous/template-nextjs/blob/30f0214cd493c10c66ec3e3440db0e66d7148302/pages/coming-soon.jsx)
+page on `localhost`.
+
+Set `NEXT_PUBLIC_COMING_SOON` to `0` in
+[`.env.production`](https://github.com/karmaniverous/template-nextjs/blob/30f0214cd493c10c66ec3e3440db0e66d7148302/.env.production)
+to view your full site in production.
