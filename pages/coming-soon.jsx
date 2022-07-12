@@ -25,7 +25,7 @@ const ComingSoon = () => {
       <Segment>
         <Header as="h2">HelloWorld is Coming Soon!</Header>
         <p>
-          This is a static coming soon page. See the
+          This is a static coming soon page. See the template{' '}
           <a href="https://github.com/karmaniverous/template-nextjs#deploying-to-vercel">
             README
           </a>{' '}
@@ -33,7 +33,7 @@ const ComingSoon = () => {
         </p>
 
         <p>
-          <a href="https://template-nextjs-git-preview-tribify.vercel.app/">
+          <a href="https://preview.template-nextjs.karmanivero.us/">
             Click here
           </a>{' '}
           to visit the Preview deployment which displays the main site.
