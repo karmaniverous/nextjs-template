@@ -42,26 +42,33 @@ const SidebarItems = () => {
         <Menu.Header>Get Help On...</Menu.Header>
         <Menu.Menu>
           <Menu.Item
+            name="twitter"
+            href="https://twitter.com/karmaniverous"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <Icon name="twitter" />
+            Twitter
+          </Menu.Item>
+
+          <Menu.Item
             name="telegram"
-            href="https://telegram.org/"
+            href="https://t.me/karmaniverous"
             target="_blank"
             rel="noreferrer"
           >
             <Icon name="telegram" />
             Telegram
           </Menu.Item>
+
           <Menu.Item
             name="discord"
-            href="https://discord.com/"
+            href="https://discordapp.com/users/karmaniverous"
             target="_blank"
             rel="noreferrer"
           >
             <Icon name="discord" />
             Discord
-          </Menu.Item>
-          <Menu.Item name="email" href="mailto:me@helloworld.com">
-            <Icon name="mail" />
-            Email
           </Menu.Item>
         </Menu.Menu>
       </Menu.Item>
