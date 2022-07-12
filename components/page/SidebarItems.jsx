@@ -42,6 +42,16 @@ const SidebarItems = () => {
         <Menu.Header>Get Help On...</Menu.Header>
         <Menu.Menu>
           <Menu.Item
+            name="github"
+            href="https://github.com/karmaniverous/template-nextjs/issues"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <Icon name="github" />
+            GitHub
+          </Menu.Item>
+
+          <Menu.Item
             name="twitter"
             href="https://twitter.com/karmaniverous"
             target="_blank"
