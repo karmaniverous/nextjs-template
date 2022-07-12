@@ -1,11 +1,6 @@
 import { Image, Header, Segment } from 'semantic-ui-react';
 import Head from 'next/head';
 
-// Show coming soon page when designated but never in preview environment.
-export const isComingSoon =
-  process.env.NEXT_PUBLIC_COMING_SOON === '1' &&
-  process.env.NEXT_PUBLIC_VERCEL_ENV !== 'preview';
-
 const ComingSoon = () => {
   return (
     <>
