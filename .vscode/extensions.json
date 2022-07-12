@@ -2,7 +2,6 @@
   "recommendations": [
     "dbaeumer.vscode-eslint",
     "shyykoserhiy.git-autoconfig",
-    "github.vscode-pull-request-github",
     "ms-vscode.vscode-typescript-next",
     "hbenl.vscode-mocha-test-adapter",
     "esbenp.prettier-vscode",
