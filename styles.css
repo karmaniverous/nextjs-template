@@ -1,0 +1,14 @@
+/* Burger button container. */
+@media only screen and (max-width: 767px) {
+  .burger-container {
+    text-align: right;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .burger-container {
+    flex-direction: column;
+    vertical-align: middle;
+    align-self: center !important;
+  }
+}
