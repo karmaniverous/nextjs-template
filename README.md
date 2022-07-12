@@ -66,4 +66,4 @@ page on `localhost`.
 
 Set `NEXT_PUBLIC_COMING_SOON` to `0` in
 [`.env.production`](https://github.com/karmaniverous/template-nextjs/blob/30f0214cd493c10c66ec3e3440db0e66d7148302/.env.production)
-to view your full site in production. test
+to view your full site in production.
