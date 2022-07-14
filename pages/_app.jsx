@@ -6,7 +6,7 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useEffect, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Container, Grid, Menu, Sidebar } from 'semantic-ui-react';
+import { Container, Grid, Menu, Sidebar, Sticky } from 'semantic-ui-react';
 
 // redux imports
 import { wrapper } from '../state/store';
@@ -143,19 +143,21 @@ function MyApp({ Component, pageProps }) {
         </Container>
       ) : (
         <Sidebar.Pushable>
-          <Sidebar
-            as={Menu}
-            animation="overlay"
-            direction="left"
-            inverted
-            onClick={onHideSidebar}
-            onHide={onHideSidebar}
-            size="huge"
-            vertical
-            visible={sidebarVisible}
-          >
-            <SidebarItems />
-          </Sidebar>
+          <Sticky>
+            <Sidebar
+              as={Menu}
+              animation="overlay"
+              direction="left"
+              inverted
+              onClick={onHideSidebar}
+              onHide={onHideSidebar}
+              size="huge"
+              vertical
+              visible={sidebarVisible}
+            >
+              <SidebarItems />
+            </Sidebar>
+          </Sticky>
 
           <Sidebar.Pusher
             dimmed={sidebarVisible}
@@ -167,9 +169,11 @@ function MyApp({ Component, pageProps }) {
               <Grid>
                 <Grid.Row>
                   <Grid.Column computer={4} only="computer">
-                    <Menu vertical fluid size="huge">
-                      <SidebarItems />
-                    </Menu>
+                    <Sticky offset={20}>
+                      <Menu vertical fluid size="huge">
+                        <SidebarItems />
+                      </Menu>
+                    </Sticky>
                   </Grid.Column>
                   <Grid.Column mobile={16} tablet={16} computer={12}>
                     <Component {...pageProps} />
