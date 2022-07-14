@@ -12,3 +12,8 @@
     align-self: center !important;
   }
 }
+
+/* Support Sticky inside Pushable. (see https://github.com/Semantic-Org/Semantic-UI-React/issues/2897) */
+.pushable:not(body) {
+  transform: none;
+}
