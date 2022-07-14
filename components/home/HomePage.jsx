@@ -7,6 +7,10 @@ import { Header, Segment } from 'semantic-ui-react';
 // redux imports
 import { PAGES, setCurrentPage } from '../../state/pageSlice.js';
 
+// component imports
+import ScrollTarget from '../page/ScrollTarget';
+const ScrollSegment = ScrollTarget(Segment);
+
 // TODO: pass game index in as prop.
 const HomePage = () => {
   // Create dispatcher.
@@ -23,12 +27,23 @@ const HomePage = () => {
         <title>Hello, World!</title>
       </Head>
 
-      <Segment>
+      <ScrollSegment name={PAGES.HOME}>
         <Header as="h2">
           Hello, World! <Header.Subheader>Nice ta meetcha!</Header.Subheader>
         </Header>
-        <p>Some content.</p>
-      </Segment>
+
+        <ScrollSegment name="section1" style={{ minHeight: '400px' }}>
+          <Header as="h3">Section 1</Header>
+        </ScrollSegment>
+
+        <ScrollSegment name="section2" style={{ minHeight: '400px' }}>
+          <Header as="h3">Section 2</Header>
+        </ScrollSegment>
+
+        <ScrollSegment name="section3" style={{ minHeight: '400px' }}>
+          <Header as="h3">Section 3</Header>
+        </ScrollSegment>
+      </ScrollSegment>
     </>
   );
 };

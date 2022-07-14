@@ -2,10 +2,13 @@
 import { useRouter } from 'next/router';
 import { useCallback } from 'react';
 import { useSelector } from 'react-redux';
+import { scroller } from 'react-scroll';
 import { Icon, Menu } from 'semantic-ui-react';
 
 // redux imports
 import { PAGES, resolveRoute } from '../../state/pageSlice.js';
+
+const doScroll = (e, { name }) => scroller.scrollTo(name, { smooth: true });
 
 const SidebarItems = () => {
   // Get page state.
@@ -27,16 +30,33 @@ const SidebarItems = () => {
       <Menu.Item
         name={PAGES.HOME}
         active={currentPage === PAGES.HOME}
-        onClick={() =>
-          shallowRoute(
-            resolveRoute({
-              currentPage: PAGES.HOME,
-            })
-          )
+        onClick={
+          currentPage === PAGES.HOME
+            ? doScroll
+            : () =>
+                shallowRoute(
+                  resolveRoute({
+                    currentPage: PAGES.HOME,
+                  })
+                )
         }
       >
         Home
       </Menu.Item>
+
+      <Menu.Menu>
+        <Menu.Item name="section1" link onClick={doScroll}>
+          Section 1
+        </Menu.Item>
+
+        <Menu.Item name="section2" link onClick={doScroll}>
+          Section 2
+        </Menu.Item>
+
+        <Menu.Item name="section3" link onClick={doScroll}>
+          Section 3
+        </Menu.Item>
+      </Menu.Menu>
 
       <Menu.Item>
         <Menu.Header>Get Help On...</Menu.Header>
