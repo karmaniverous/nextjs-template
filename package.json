@@ -95,7 +95,8 @@
   },
   "release-it": {
     "github": {
-      "release": true
+      "release": true,
+      "update": true
     },
     "npm": {
       "publish": false
