@@ -8,8 +8,6 @@ import { Icon, Menu } from 'semantic-ui-react';
 // redux imports
 import { PAGES, resolveRoute } from '../../state/pageSlice.js';
 
-const doScroll = (e, { name }) => scroller.scrollTo(name, { smooth: true });
-
 const SidebarItems = () => {
   // Get page state.
   const currentPage = useSelector((state) => state.page.currentPage);
@@ -22,6 +20,10 @@ const SidebarItems = () => {
         shallow: true,
       }),
     [router]
+  );
+
+  const doScroll = useCallback((e, { name }) =>
+    scroller.scrollTo(name, { smooth: true })
   );
 
   return (
