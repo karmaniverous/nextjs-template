@@ -1,6 +1,6 @@
 {
   "name": "@karmaniverous/next-template",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Next.js ES6 template with support for Redux Toolkit, Serify, Lodash, Semantic UI, and Mocha + Chai.",
   "main": "index.js",
   "scripts": {
