@@ -6,7 +6,7 @@
   "scripts": {
     "build": "next build",
     "dev": "next dev",
-    "release": "dotenv -c -- release-it",
+    "release": "dotenv -c development -- release-it",
     "start": "next start",
     "test": "mocha './{,!(node_modules)/**}/*.test.*js*'"
   },
