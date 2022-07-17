@@ -46,6 +46,26 @@ non-negotiable, for reasons that will become obvious in step 2 below.
 6. Start the development server by running `npm run dev`.
 7. Visit the web application at http://localhost:3000.
 
+## `release-it` Configuration
+
+This template includes [release-it](https://github.com/release-it/release-it)
+support that requires these final configurations:
+
+1. Create a copy of `.env.development.local.template` and name it
+   `.env.development.local`
+
+1. Create a GitHub
+   [personal access token](https://github.com/settings/tokens/new?scopes=repo&description=release-it)
+   and add it as the value of `GITHUB_TOKEN` in `.env.development.local`.
+
+You can now build your project and publish a release to GitHub and NPM with
+these commands:
+
+```
+npm run build
+npm run release
+```
+
 ## Deploying to Vercel?
 
 Connect your preview environment to the `preview` branch.
