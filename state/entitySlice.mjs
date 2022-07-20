@@ -1,6 +1,7 @@
 // npm imports
 import _ from 'lodash';
-import { createEntityAdapter, createSlice } from '@reduxjs/toolkit';
+import ReduxToolkit from '@reduxjs/toolkit';
+const { createEntityAdapter, createSlice } = ReduxToolkit;
 
 /* REDUX */
 

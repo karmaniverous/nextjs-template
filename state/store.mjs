@@ -1,5 +1,6 @@
 // npm imports
-import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import ReduxToolkit from '@reduxjs/toolkit';
+const { combineReducers, configureStore } = ReduxToolkit;
 import { createWrapper, HYDRATE } from 'next-redux-wrapper';
 import { createReduxMiddleware } from '@karmaniverous/serify-deserify';
 
