@@ -4,10 +4,12 @@ import { createWrapper, HYDRATE } from 'next-redux-wrapper';
 import { createReduxMiddleware } from '@karmaniverous/serify-deserify';
 
 // redux imports
-import pageReducer from './pageSlice.js';
+import entityReducer from './entitySlice.mjs';
+import pageReducer from './pageSlice.mjs';
 
 // Combine reducers.
 const combinedReducer = combineReducers({
+  entity: entityReducer,
   page: pageReducer,
 });
 
@@ -28,7 +30,7 @@ const reducer = (state, action) => {
 const serifyMiddleware = createReduxMiddleware();
 
 // Create store.
-const makeStore = () =>
+export const makeStore = () =>
   configureStore({
     reducer,
     middleware: (getDefaultMiddleware) => [

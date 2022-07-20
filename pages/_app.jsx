@@ -9,8 +9,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Container, Grid, Menu, Sidebar, Sticky } from 'semantic-ui-react';
 
 // redux imports
-import { wrapper } from '../state/store';
-import { setPushRoute, setSidebarVisible } from '../state/pageSlice.js';
+import { wrapper } from '../state/store.mjs';
+import { setPushRoute, setSidebarVisible } from '../state/pageSlice.mjs';
 
 // component imports
 import ComingSoon from './coming-soon';

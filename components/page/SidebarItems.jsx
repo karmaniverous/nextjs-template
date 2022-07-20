@@ -6,7 +6,7 @@ import { scroller } from 'react-scroll';
 import { Icon, Menu } from 'semantic-ui-react';
 
 // redux imports
-import { PAGES, resolveRoute } from '../../state/pageSlice.js';
+import { PAGES, resolveRoute } from '../../state/pageSlice.mjs';
 
 const SidebarItems = () => {
   // Get page state.
