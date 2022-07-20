@@ -4,10 +4,12 @@ import { createWrapper, HYDRATE } from 'next-redux-wrapper';
 import { createReduxMiddleware } from '@karmaniverous/serify-deserify';
 
 // redux imports
+import entityReducer from './entitySlice.js';
 import pageReducer from './pageSlice.js';
 
 // Combine reducers.
 const combinedReducer = combineReducers({
+  entity: entityReducer,
   page: pageReducer,
 });
 
