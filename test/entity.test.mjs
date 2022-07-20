@@ -16,8 +16,8 @@ import {
   removeForm,
   selectForms,
   updateForm,
-} from '../state/entitySlice.js';
-import { makeStore } from '../state/store.js';
+} from '../state/entitySlice.mjs';
+import { makeStore } from '../state/store.mjs';
 
 let dispatch;
 let getState;

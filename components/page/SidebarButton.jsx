@@ -3,7 +3,7 @@ import { Button } from 'semantic-ui-react';
 import { useSelector, useDispatch } from 'react-redux';
 
 // redux imports
-import { setSidebarVisible } from '../../state/pageSlice.js';
+import { setSidebarVisible } from '../../state/pageSlice.mjs';
 
 const SidebarButton = () => {
   // Get page state.

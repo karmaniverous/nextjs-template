@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import { Header, Segment } from 'semantic-ui-react';
 
 // redux imports
-import { PAGES, setCurrentPage } from '../../state/pageSlice.js';
+import { PAGES, setCurrentPage } from '../../state/pageSlice.mjs';
 
 // component imports
 import ScrollTarget from '../page/ScrollTarget';
