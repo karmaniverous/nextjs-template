@@ -31,7 +31,7 @@ const reducer = (state, action) => {
 const serifyMiddleware = createReduxMiddleware();
 
 // Create store.
-const makeStore = () =>
+export const makeStore = () =>
   configureStore({
     reducer,
     middleware: (getDefaultMiddleware) => [
