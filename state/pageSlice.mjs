@@ -1,6 +1,5 @@
 // npm imports
-import ReduxToolkit from '@reduxjs/toolkit';
-const { createSlice } = ReduxToolkit;
+import { createSlice } from '@reduxjs/toolkit';
 
 // enums
 export const PAGES = {
