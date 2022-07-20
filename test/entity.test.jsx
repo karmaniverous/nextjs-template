@@ -13,9 +13,9 @@ chai.use(chaiMatchPattern);
 // redux imports
 import {
   addEntity,
-  removeForm,
-  selectForms,
-  updateForm,
+  removeEntity,
+  selectEntities,
+  updateEntity,
 } from '../state/entitySlice.mjs';
 import { makeStore } from '../state/store.mjs';
 
@@ -45,7 +45,7 @@ describe('STATE', async function () {
 
       describe('* validations', async () => {
         it('* select all entities', async () => {
-          const entities = selectForms(getState().entity);
+          const entities = selectEntities(getState().entity);
 
           entities.should.matchPattern(`[
             {
@@ -62,7 +62,7 @@ describe('STATE', async function () {
         });
 
         it('* select one entity', async () => {
-          const entities = selectForms(getState().entity, {
+          const entities = selectEntities(getState().entity, {
             entityKey: 'entity0',
           });
 
@@ -76,7 +76,7 @@ describe('STATE', async function () {
         });
 
         it('* select invalid entity', async () => {
-          const entities = selectForms(getState().entity, {
+          const entities = selectEntities(getState().entity, {
             entityKey: 'entity42',
           });
 
@@ -93,17 +93,17 @@ describe('STATE', async function () {
           created.entity1 = getState().entity.entities.entity1?.created;
 
           // Simple update.
-          dispatch(updateForm({ id: 'entity0', changes: {} }));
+          dispatch(updateEntity({ id: 'entity0', changes: {} }));
 
           // Key update.
           dispatch(
-            updateForm({ id: 'entity1', changes: { entityKey: 'entity42' } })
+            updateEntity({ id: 'entity1', changes: { entityKey: 'entity42' } })
           );
         });
 
         describe('validations', async () => {
           it('* select all entities', async () => {
-            const entities = selectForms(getState().entity);
+            const entities = selectEntities(getState().entity);
 
             entities.should.matchPattern(`[
             {
@@ -123,12 +123,12 @@ describe('STATE', async function () {
 
       describe('remove entity', async () => {
         beforeEach(async () => {
-          dispatch(removeForm('entity1'));
+          dispatch(removeEntity('entity1'));
         });
 
         describe('validations', async () => {
           it('* select all entities', async () => {
-            const entities = selectForms(getState().entity);
+            const entities = selectEntities(getState().entity);
 
             entities.should.matchPattern(`[
                 {
