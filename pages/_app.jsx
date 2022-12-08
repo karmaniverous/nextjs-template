@@ -13,7 +13,6 @@ import { wrapper } from '../state/store.mjs';
 import { setPushRoute, setSidebarVisible } from '../state/pageSlice.mjs';
 
 // component imports
-import ComingSoon from './coming-soon';
 import PageFooter from '../components/page/PageFooter';
 import PageHeader from '../components/page/PageHeader';
 import SidebarItems from '../components/page/SidebarItems';
@@ -21,10 +20,6 @@ import SidebarItems from '../components/page/SidebarItems';
 // css imports
 import 'semantic-ui-css/semantic.min.css';
 import '../styles.css';
-
-const isComingSoon =
-  process.env.NEXT_PUBLIC_COMING_SOON === '1' &&
-  process.env.NEXT_PUBLIC_VERCEL_ENV !== 'preview';
 
 function MyApp({ Component, pageProps }) {
   // Get page state.
