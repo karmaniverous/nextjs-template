@@ -9,7 +9,6 @@ import { Menu } from 'semantic-ui-react';
 import { PAGES, resolveRoute } from '../../state/pageSlice.mjs';
 
 // component imports
-import SidebarItemsReleaseNotes from './SidebarItemsReleaseNotes';
 import SidebarItemsStatic from './SidebarItemsStatic';
 
 const SidebarItems = () => {
@@ -33,10 +32,6 @@ const SidebarItems = () => {
   return (
     <>
       <Menu.Item header>Menu Header</Menu.Item>
-
-      <Menu.Menu>
-        <SidebarItemsReleaseNotes />
-      </Menu.Menu>
 
       <Menu.Item
         name={PAGES.HOME}

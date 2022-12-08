@@ -1,6 +1,9 @@
 // npm imports
 import { Icon, Menu } from 'semantic-ui-react';
 
+// component imports
+import SidebarItemsReleaseNotes from './SidebarItemsReleaseNotes';
+
 const SidebarItemsStatic = () => (
   <>
     {process.env.NEXT_PUBLIC_GITHUB_LINK ? (
@@ -38,6 +41,8 @@ const SidebarItemsStatic = () => (
         Telegram
       </Menu.Item>
     ) : null}
+
+    <SidebarItemsReleaseNotes />
   </>
 );
 
