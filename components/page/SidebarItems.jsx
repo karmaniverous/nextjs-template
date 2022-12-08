@@ -3,10 +3,14 @@ import { useRouter } from 'next/router';
 import { useCallback } from 'react';
 import { useSelector } from 'react-redux';
 import { scroller } from 'react-scroll';
-import { Icon, Menu } from 'semantic-ui-react';
+import { Menu } from 'semantic-ui-react';
 
 // redux imports
 import { PAGES, resolveRoute } from '../../state/pageSlice.mjs';
+
+// component imports
+import SidebarItemsReleaseNotes from './SidebarItemsReleaseNotes';
+import SidebarItemsStatic from './SidebarItemsStatic';
 
 const SidebarItems = () => {
   // Get page state.
@@ -29,6 +33,11 @@ const SidebarItems = () => {
   return (
     <>
       <Menu.Item header>Menu Header</Menu.Item>
+
+      <Menu.Menu>
+        <SidebarItemsReleaseNotes />
+      </Menu.Menu>
+
       <Menu.Item
         name={PAGES.HOME}
         active={currentPage === PAGES.HOME}
@@ -63,45 +72,7 @@ const SidebarItems = () => {
       <Menu.Item>
         <Menu.Header>Get Help On...</Menu.Header>
         <Menu.Menu>
-          <Menu.Item
-            name="github"
-            href="https://github.com/karmaniverous/template-nextjs/issues"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <Icon name="github" />
-            GitHub
-          </Menu.Item>
-
-          <Menu.Item
-            name="twitter"
-            href="https://twitter.com/karmaniverous"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <Icon name="twitter" />
-            Twitter
-          </Menu.Item>
-
-          <Menu.Item
-            name="telegram"
-            href="https://t.me/karmaniverous"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <Icon name="telegram" />
-            Telegram
-          </Menu.Item>
-
-          <Menu.Item
-            name="discord"
-            href="https://discordapp.com/users/karmaniverous"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <Icon name="discord" />
-            Discord
-          </Menu.Item>
+          <SidebarItemsStatic />
         </Menu.Menu>
       </Menu.Item>
     </>

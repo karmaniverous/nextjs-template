@@ -66,24 +66,23 @@ npm run build
 npm run release
 ```
 
-## Deploying to Vercel?
+## Coming Soon
 
-Connect your preview environment to the `preview` branch.
+If the following environmental variable condition is `true`, the application
+will display a coming soon page:
 
-See the `NEXT_PUBLIC_COMING_SOON` environment variable in
-[`.env.production`](https://github.com/karmaniverous/template-nextjs/blob/30f0214cd493c10c66ec3e3440db0e66d7148302/.env.production).
-When this value is `1`, your production environment (`main` branch) will display
-your
-[`coming-soon`](https://github.com/karmaniverous/template-nextjs/blob/30f0214cd493c10c66ec3e3440db0e66d7148302/pages/coming-soon.jsx)
-page and your preview environment (preview branch) will always display your
-site.
+```js
+process.env.NEXT_PUBLIC_COMING_SOON === '1' &&
+  process.env.NEXT_PUBLIC_VERCEL_ENV !== 'preview';
+```
 
-Set `NEXT_PUBLIC_COMING_SOON` to `1` in
-[`.env.development`](https://github.com/karmaniverous/template-nextjs/blob/30f0214cd493c10c66ec3e3440db0e66d7148302/.env.development)
-to view your
-[`coming-soon`](https://github.com/karmaniverous/template-nextjs/blob/30f0214cd493c10c66ec3e3440db0e66d7148302/pages/coming-soon.jsx)
-page on `localhost`.
+If it is `false`, then the application will display.
 
-Set `NEXT_PUBLIC_COMING_SOON` to `0` in
-[`.env.production`](https://github.com/karmaniverous/template-nextjs/blob/30f0214cd493c10c66ec3e3440db0e66d7148302/.env.production)
-to view your full site in production.
+In the development environment, both variables may be set explicitly in
+`.env.development`. In deployed environments, they are set explicitly in
+`.env.production` but may be overridden in your deployment pipeline.
+
+If you are hosted at Vercel, the hosting environment will populate the
+`NEXT_PUBLIC_VERCEL_ENV` environment variable to reflect your deployment type.
+This value will be `production` on your production branch and `preview` on all
+other branches.
