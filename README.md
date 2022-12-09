@@ -164,3 +164,8 @@ Semantic UI themes.
 ## Page Model
 
 [TODO]
+
+## Next Steps
+
+- OAuth authentication
+- API endpoints
