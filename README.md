@@ -168,4 +168,5 @@ Semantic UI themes.
 ## Next Steps
 
 - OAuth authentication
+- Connection to AWS API template
 - API endpoints
