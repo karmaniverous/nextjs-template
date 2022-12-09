@@ -7,7 +7,7 @@ template solves a lot of initial problems and gets you to a well-scaffolded,
 responsive web application with some built-in navigation and support for all the
 goodies.
 
-This template is highly opinionateed with respect to toolchain. It is _hard_ to
+This template is highly opinionated with respect to toolchain. It is _hard_ to
 get all of these bits to work together. It isn't hard to find a template that
 provides a basic platform. The challenge is to fill that template out into a
 machine that supports the development process in a robust matter.
@@ -15,6 +15,12 @@ machine that supports the development process in a robust matter.
 It is _hard_ to get all of those bits to work together. It is _way_ easier to
 cut out the bits you don't need than figure out how to slot in the things you
 do. So that's what we have here.
+
+Because this is a Next.js template, it works perfectly when deployed to
+[Vercel](https://vercel.com/). I've tried hard to make it host-agnostic, though,
+and I know for a fact that it works just as well deployed to
+[AWS Amplify](https://aws.amazon.com/amplify). It should work fine at any host
+that supports Next.js.
 
 ## What's Included
 
@@ -71,6 +77,23 @@ When you to this, you will find that your sidebar menu and site footer contain a
 link to the current version's release notes. You can configure this by editing
 the component at `components/page/SidebarItemsReleaseNotes.jsx`.
 
+## Lodash Support
+
+[Lodash](https://lodash.com/) is the classic Swiss-army-knife library: you could
+always code around it, and it isn't always appropriate, but it's super nice to
+have it in your back pocket.
+
+Trouble is, it's a HUGE library. You can cherry-pick from it, but that gets
+painful fast. So we've included & configured
+`babel-plugin-lodash`(https://www.npmjs.com/package/babel-plugin-lodash). Now
+you can just import the entire library in you code, like this:
+
+```js
+import _ from 'lodash';
+```
+
+Babel will cherry-pick from Lodash for you at build time!
+
 ## Coming Soon
 
 If the following environmental variable condition is `true`, the application
@@ -121,3 +144,23 @@ of `node_modules\semantic-ui-less\themes`.
 
 See [here](https://semantic-ui.com/usage/theming.html) to learn more about
 Semantic UI themes.
+
+## Redux, Redux Toolkit & Create Entity Adapter
+
+[TODO]
+
+## Testing
+
+[TODO]
+
+## Formatting & Linting Support
+
+[TODO]
+
+## Environment Variables
+
+[TODO]
+
+## Page Model
+
+[TODO]
