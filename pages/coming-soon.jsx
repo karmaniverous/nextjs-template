@@ -1,22 +1,24 @@
-import { Image, Header, Segment } from 'semantic-ui-react';
+// npm imports
+import { Header, Segment } from 'semantic-ui-react';
 import Head from 'next/head';
+
+const pageTitle = 'HelloWorld is Coming Soon!';
 
 const ComingSoon = () => {
   return (
     <>
       <Head>
-        <title>HelloWorld is Coming Soon!</title>
+        <title>{pageTitle}</title>
+
+        <meta property="og:title" content={pageTitle} key="ogtitle" />
+
+        <meta property="twitter:title" content={pageTitle} key="twtitle" />
       </Head>
 
-      <Segment basic>
-        <Header as="h1">
-          <Image alt="" src="/images/logo.png" />
-          <Header.Content>
-            HelloWorld
-            <Header.Subheader>Nice ta meetcha!</Header.Subheader>
-          </Header.Content>
-        </Header>
+      <Segment>
+        <Header as="h2">{pageTitle}</Header>
       </Segment>
+
       <Segment>
         <Header as="h2">HelloWorld is Coming Soon!</Header>
         <p>

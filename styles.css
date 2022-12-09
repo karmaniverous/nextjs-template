@@ -13,7 +13,14 @@
   }
 }
 
-/* Support Sticky inside Pushable. (see https://github.com/Semantic-Org/Semantic-UI-React/issues/2897) */
-.pushable:not(body) {
-  transform: none;
+/* Fix sticky sidebar menu */
+.sidebar-menu {
+  position: sticky;
+  position: -webkit-sticky;
+  top: 20px;
+}
+
+.pushable,
+.pusher {
+  overflow: unset !important;
 }

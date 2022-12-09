@@ -4,27 +4,27 @@
 import App from 'next/app';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
+import Script from 'next/script';
 import { useEffect, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Container, Grid, Menu, Sidebar, Sticky } from 'semantic-ui-react';
 
 // redux imports
 import { wrapper } from '../state/store.mjs';
-import { setPushRoute, setSidebarVisible } from '../state/pageSlice.mjs';
+import {
+  setBaseUrl,
+  setPushRoute,
+  setSidebarVisible,
+} from '../state/pageSlice.mjs';
 
 // component imports
-import ComingSoon from './coming-soon';
 import PageFooter from '../components/page/PageFooter';
 import PageHeader from '../components/page/PageHeader';
 import SidebarItems from '../components/page/SidebarItems';
 
 // css imports
-import 'semantic-ui-css/semantic.min.css';
+import 'semantic-ui-less/semantic.less';
 import '../styles.css';
-
-const isComingSoon =
-  process.env.NEXT_PUBLIC_COMING_SOON === '1' &&
-  process.env.NEXT_PUBLIC_VERCEL_ENV !== 'preview';
 
 function MyApp({ Component, pageProps }) {
   // Get page state.
@@ -135,56 +135,87 @@ function MyApp({ Component, pageProps }) {
           content="/images/favicon/ms-icon-144x144.png"
         />
         <meta name="theme-color" content="#ffffff" />{' '}
+        <meta
+          name="description"
+          content={process.env.NEXT_PUBLIC_SITE_DESCRIPTION}
+          key="metadesc"
+        />
+        <meta
+          property="og:description"
+          content={process.env.NEXT_PUBLIC_SITE_DESCRIPTION}
+          key="ogdesc"
+        />
+        {/* <meta property="og:image" content={pageImage} key="ogimage" /> */}
+        <meta
+          property="og:site_name"
+          content={process.env.NEXT_PUBLIC_SITE_TOKEN}
+          key="ogsitename"
+        />
+        <meta name="twitter:card" content="summary_large_image" key="twcard" />
+        <meta
+          name="twitter:description"
+          content={process.env.NEXT_PUBLIC_SITE_DESCRIPTION}
+          key="twdesc"
+        />
+        {/* <meta property="twitter:image" content={pageImage} key="twimage" /> */}
+        <meta
+          name="twitter:site"
+          content={`@${process.env.NEXT_PUBLIC_TWITTER_HANDLE}`}
+          key="twhandle"
+        />
       </Head>
 
-      {isComingSoon ? (
-        <Container>
-          <ComingSoon {...pageProps} />
-        </Container>
-      ) : (
-        <Sidebar.Pushable>
-          <Sticky>
-            <Sidebar
-              as={Menu}
-              animation="overlay"
-              direction="left"
-              inverted
-              onClick={onHideSidebar}
-              onHide={onHideSidebar}
-              size="huge"
-              vertical
-              visible={sidebarVisible}
-            >
-              <SidebarItems />
-            </Sidebar>
-          </Sticky>
+      {/* Configure Google Tag Manager ID in .env */}
+      {process.env.NEXT_PUBLIC_GTM_ID ? (
+        <Script id="google-tag-manager" strategy="afterInteractive">
+          {`
+        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','${process.env.NEXT_PUBLIC_GTM_ID}')
+      `}
+        </Script>
+      ) : null}
 
-          <Sidebar.Pusher
-            dimmed={sidebarVisible}
-            style={{ minHeight: '100vh' }}
+      {/* Support Sticky inside Pushable. (see https://github.com/Semantic-Org/Semantic-UI-React/issues/2897) */}
+      <Sidebar.Pushable style={{ transform: 'none' }}>
+        <Sticky>
+          <Sidebar
+            as={Menu}
+            animation="overlay"
+            direction="left"
+            inverted
+            onClick={onHideSidebar}
+            onHide={onHideSidebar}
+            size="huge"
+            vertical
+            visible={sidebarVisible}
           >
-            <Container>
-              <PageHeader />
+            <SidebarItems />
+          </Sidebar>
+        </Sticky>
 
-              <Grid>
-                <Grid.Row>
-                  <Grid.Column computer={4} only="computer">
-                    <Sticky offset={20}>
-                      <Menu vertical fluid size="huge">
-                        <SidebarItems />
-                      </Menu>
-                    </Sticky>
-                  </Grid.Column>
-                  <Grid.Column mobile={16} tablet={16} computer={12}>
-                    <Component {...pageProps} />
-                  </Grid.Column>
-                </Grid.Row>
-              </Grid>
-              <PageFooter />
-            </Container>
-          </Sidebar.Pusher>
-        </Sidebar.Pushable>
-      )}
+        <Sidebar.Pusher dimmed={sidebarVisible} style={{ minHeight: '100vh' }}>
+          <Container>
+            <PageHeader />
+
+            <Grid>
+              <Grid.Row>
+                <Grid.Column computer={4} only="computer">
+                  <Menu className="sidebar-menu" fluid size="huge" vertical>
+                    <SidebarItems />
+                  </Menu>
+                </Grid.Column>
+                <Grid.Column mobile={16} tablet={16} computer={12}>
+                  <Component {...pageProps} />
+                </Grid.Column>
+              </Grid.Row>
+            </Grid>
+            <PageFooter />
+          </Container>
+        </Sidebar.Pusher>
+      </Sidebar.Pushable>
     </>
   );
 }
@@ -199,35 +230,50 @@ const redirect = (res, path) => {
   res.end();
 };
 
-// Set initial state on server side. NO ACCESS TO CLIENT SIDE DATA!
+// Set initial props & state.
 MyApp.getInitialProps = wrapper.getInitialAppProps(
-  (/* { dispatch, getState } */) => async (context) => {
-    const {
-      ctx: { res },
-      router: { /* query, */ route },
-    } = context;
+  ({ dispatch, getState }) =>
+    async (context) => {
+      const {
+        ctx: { req, res },
+        router: { /* query, */ route },
+      } = context;
+      // Server-side only. NO ACCESS TO CLIENT SIDE DATA!
+      if (req) {
+        // Is app coming soon?
+        const {
+          page: { comingSoon },
+        } = getState();
 
-    // If app is coming soon, route all traffic to coming-soon endpoint.
-    if (route !== '/coming-soon' && isComingSoon) redirect(res, '/coming-soon');
+        // If app is coming soon, route all traffic to coming-soon endpoint.
+        if (route !== '/coming-soon' && comingSoon)
+          redirect(res, '/coming-soon');
 
-    // If app is not coming soon, route all coming-soon traffic to home.
-    if (route === '/coming-soon' && !isComingSoon) redirect(res, '/');
+        // If app is not coming soon, route all coming-soon traffic to home.
+        if (route === '/coming-soon' && !comingSoon) redirect(res, '/');
 
-    // Perform any server-side redirects.
+        // Calculate base url.
+        const baseUrl = `${req.socket?.encrypted ? 'https' : 'http'}://${
+          req.headers.host
+        }`;
+        dispatch(setBaseUrl(baseUrl));
 
-    // Set any server-side state.
+        // Perform any server-side redirects.
 
-    // If we were actually going to set any page props, this is where we'd put them.
-    const props = {};
+        // Set any server-side state.
+      }
 
-    // Return any initial props we might have set.
-    return {
-      pageProps: {
-        ...(await App.getInitialProps(context)).pageProps,
-        ...props,
-      },
-    };
-  }
+      // If we were actually going to set any page props, this is where we'd put them.
+      const props = {};
+
+      // Return any initial props we might have set.
+      return {
+        pageProps: {
+          ...(await App.getInitialProps(context)).pageProps,
+          ...props,
+        },
+      };
+    }
 );
 
 export default wrapper.withRedux(MyApp);
