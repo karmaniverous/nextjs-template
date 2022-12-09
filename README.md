@@ -44,13 +44,18 @@ the following technologies (click the links to do a deep dive):
 non-negotiable, for reasons that will become obvious in step 2 below.
 
 1. Clone this repository to your local machine.
+
 1. VS Code will ask to install a bunch of recommended extensions. Accept all of
    them.
+
 1. Install dependencies by running `npm install`.
+
 1. Remove the `.template` extension from `.env.local.template` and
    `.env.development.local.template`. These files are blocked by `.gitignore`,
-   so they are safe for environmental secrets!
+   so they are safe for environment secrets!
+
 1. Start the development server by running `npm run dev`.
+
 1. Visit the web application at http://localhost:3000.
 
 ## `release-it` Configuration
@@ -77,27 +82,27 @@ When you to this, you will find that your sidebar menu and site footer contain a
 link to the current version's release notes. You can configure this by editing
 the component at `components/page/SidebarItemsReleaseNotes.jsx`.
 
-## Lodash Support
+## `lodash` Support
 
-[Lodash](https://lodash.com/) is the classic Swiss-army-knife library: you could
-always code around it, and it isn't always appropriate, but it's super nice to
-have it in your back pocket.
+[`lodash`](https://lodash.com/) is the classic Swiss-army-knife library: you
+could always code around it, and it isn't always appropriate, but it's super
+nice to have it in your back pocket.
 
 Trouble is, it's a HUGE library. You can cherry-pick from it, but that gets
-painful fast. So we've included & configured
-`babel-plugin-lodash`(https://www.npmjs.com/package/babel-plugin-lodash). Now
-you can just import the entire library in you code, like this:
+painful fast. So I've included & configured
+[`babel-plugin-lodash`](https://www.npmjs.com/package/babel-plugin-lodash). Now
+you can just import the entire library in your code, like this:
 
 ```js
 import _ from 'lodash';
 ```
 
-Babel will cherry-pick from Lodash for you at build time!
+Babel will cherry-pick from `lodash` for you at build time!
 
 ## Coming Soon
 
-If the following environmental variable condition is `true`, the application
-will display a coming soon page:
+If the following environment variable condition is `true`, the application will
+display a coming soon page:
 
 ```js
 process.env.NEXT_PUBLIC_COMING_SOON === '1' &&
