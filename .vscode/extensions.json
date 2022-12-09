@@ -1,10 +1,8 @@
 {
   "recommendations": [
     "dbaeumer.vscode-eslint",
-    "shyykoserhiy.git-autoconfig",
     "ms-vscode.vscode-typescript-next",
     "hbenl.vscode-mocha-test-adapter",
-    "esbenp.prettier-vscode",
-    "Gruntfuggly.todo-tree"
+    "esbenp.prettier-vscode"
   ]
 }
