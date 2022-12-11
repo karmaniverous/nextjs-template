@@ -15,6 +15,7 @@ const initialState = {
     process.env.NEXT_PUBLIC_COMING_SOON === '1' &&
     process.env.NEXT_PUBLIC_VERCEL_ENV !== 'preview',
   currentPage: null,
+  logoutUrl: null,
   pushRoute: null,
   sidebarVisible: false,
   siteToken: `${process.env.NEXT_PUBLIC_SITE_TOKEN}${
@@ -35,6 +36,9 @@ const pageSlice = createSlice({
     setCurrentPage: (state, { payload }) => {
       state.currentPage = payload;
     },
+    setLogoutUrl: (state, { payload }) => {
+      state.logoutUrl = payload;
+    },
     setPushRoute: (state, { payload }) => {
       state.pushRoute = payload;
     },
@@ -45,8 +49,13 @@ const pageSlice = createSlice({
 });
 
 // Export actions.
-export const { setBaseUrl, setCurrentPage, setPushRoute, setSidebarVisible } =
-  pageSlice.actions;
+export const {
+  setBaseUrl,
+  setCurrentPage,
+  setLogoutUrl,
+  setPushRoute,
+  setSidebarVisible,
+} = pageSlice.actions;
 
 // Export reducer.
 export default pageSlice.reducer;

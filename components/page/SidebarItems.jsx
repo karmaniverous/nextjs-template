@@ -1,15 +1,17 @@
 // npm imports
 import { useRouter } from 'next/router';
+import { useSession, signIn } from 'next-auth/react';
 import { useCallback } from 'react';
 import { useSelector } from 'react-redux';
 import { scroller } from 'react-scroll';
-import { Menu } from 'semantic-ui-react';
+import { Icon, Menu } from 'semantic-ui-react';
 
 // redux imports
 import { PAGES, resolveRoute } from '../../state/pageSlice.mjs';
 
 // component imports
 import SidebarItemsStatic from './SidebarItemsStatic';
+import useSignOut from '../useSignOut';
 
 const SidebarItems = () => {
   // Get page state.
@@ -29,9 +31,31 @@ const SidebarItems = () => {
     scroller.scrollTo(name, { smooth: true })
   );
 
+  // Get session.
+  const { data: session } = useSession();
+
+  // Get signOut callback.
+  const { signOut } = useSignOut();
+
   return (
     <>
       <Menu.Item header>Menu Header</Menu.Item>
+
+      <Menu.Item onClick={session ? null : () => signIn('cognito')}>
+        {session ? (
+          <>
+            {session.user.email}
+            <Menu.Menu>
+              <Menu.Item onClick={signOut}>
+                <Icon name="log out" />
+                Sign Out
+              </Menu.Item>
+            </Menu.Menu>
+          </>
+        ) : (
+          'Sign In/Register'
+        )}
+      </Menu.Item>
 
       <Menu.Item
         name={PAGES.HOME}

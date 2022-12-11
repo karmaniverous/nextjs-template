@@ -170,8 +170,11 @@ Semantic UI themes.
 
 [TODO]
 
+## User Authentication
+
+[TODO]
+
 ## Next Steps
 
-- OAuth authentication
 - Connection to AWS API template
 - API endpoints

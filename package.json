@@ -29,6 +29,7 @@
     "@reduxjs/toolkit": "^1.9.1",
     "lodash": "^4.17.21",
     "next": "^12.2.2",
+    "next-auth": "^4.18.4",
     "next-redux-wrapper": "~7.0.5",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
