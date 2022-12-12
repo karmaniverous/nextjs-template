@@ -9,7 +9,7 @@ const PageFooter = () => {
     <Segment style={{ marginBottom: '1em', paddingBottom: 0, paddingTop: 0 }}>
       <Menu borderless stackable style={{ marginBottom: 0, marginTop: 0 }} text>
         {process.env.NEXT_PUBLIC_SITE_COPYRIGHT ? (
-          <Menu.Item>&copy; {process.env.NEXT_PUBLIC_SITE_COPYRIGHT}</Menu.Item>
+          <Menu.Item>{process.env.NEXT_PUBLIC_SITE_COPYRIGHT}</Menu.Item>
         ) : null}
 
         <Menu.Menu position="right">

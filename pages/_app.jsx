@@ -5,6 +5,7 @@ import App from 'next/app';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import Script from 'next/script';
+import { SessionProvider } from 'next-auth/react';
 import { useEffect, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Container, Grid, Menu, Sidebar, Sticky } from 'semantic-ui-react';
@@ -13,6 +14,7 @@ import { Container, Grid, Menu, Sidebar, Sticky } from 'semantic-ui-react';
 import { wrapper } from '../state/store.mjs';
 import {
   setBaseUrl,
+  setLogoutUrl,
   setPushRoute,
   setSidebarVisible,
 } from '../state/pageSlice.mjs';
@@ -26,10 +28,11 @@ import SidebarItems from '../components/page/SidebarItems';
 import 'semantic-ui-less/semantic.less';
 import '../styles.css';
 
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   // Get page state.
   const pushRoute = useSelector((state) => state.page.pushRoute);
   const sidebarVisible = useSelector((state) => state.page.sidebarVisible);
+  const siteName = useSelector((state) => state.page.siteName);
 
   // Create dispatcher.
   const dispatch = useDispatch();
@@ -55,7 +58,7 @@ function MyApp({ Component, pageProps }) {
   }, [pushRoute]);
 
   return (
-    <>
+    <SessionProvider session={session}>
       <Head>
         {/* Get a favicon package at https://www.favicon-generator.org/ */}
         <link rel="shortcut icon" href="/images/favicon/favicon.ico" />
@@ -129,6 +132,7 @@ function MyApp({ Component, pageProps }) {
           href="/images/favicon/favicon-16x16.png"
         />
         <link rel="manifest" href="/images/favicon/manifest.json" />
+        <title>{siteName}</title>
         <meta name="msapplication-TileColor" content="#ffffff" />
         <meta
           name="msapplication-TileImage"
@@ -146,11 +150,7 @@ function MyApp({ Component, pageProps }) {
           key="ogdesc"
         />
         {/* <meta property="og:image" content={pageImage} key="ogimage" /> */}
-        <meta
-          property="og:site_name"
-          content={process.env.NEXT_PUBLIC_SITE_TOKEN}
-          key="ogsitename"
-        />
+        <meta property="og:site_name" content={siteName} key="ogsitename" />
         <meta name="twitter:card" content="summary_large_image" key="twcard" />
         <meta
           name="twitter:description"
@@ -216,7 +216,7 @@ function MyApp({ Component, pageProps }) {
           </Container>
         </Sidebar.Pusher>
       </Sidebar.Pushable>
-    </>
+    </SessionProvider>
   );
 }
 
@@ -252,11 +252,18 @@ MyApp.getInitialProps = wrapper.getInitialAppProps(
         // If app is not coming soon, route all coming-soon traffic to home.
         if (route === '/coming-soon' && !comingSoon) redirect(res, '/');
 
-        // Calculate base url.
+        // Calculate base & logout urls.
         const baseUrl = `${req.socket?.encrypted ? 'https' : 'http'}://${
           req.headers.host
         }`;
         dispatch(setBaseUrl(baseUrl));
+        dispatch(
+          setLogoutUrl(
+            `https://${process.env.NEXT_AUTH_COGNITO_DOMAIN}/logout?client_id=${
+              process.env.NEXT_AUTH_COGNITO_CLIENT_ID
+            }&logout_uri=${encodeURIComponent(`${baseUrl}`)}`
+          )
+        );
 
         // Perform any server-side redirects.
 

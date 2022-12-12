@@ -42,6 +42,13 @@ const SidebarItemsStatic = () => (
       </Menu.Item>
     ) : null}
 
+    {process.env.NEXT_PUBLIC_EMAIL ? (
+      <Menu.Item name="email" href={`mailto:${process.env.NEXT_PUBLIC_EMAIL}`}>
+        <Icon name="mail" />
+        Email
+      </Menu.Item>
+    ) : null}
+
     <SidebarItemsReleaseNotes />
   </>
 );

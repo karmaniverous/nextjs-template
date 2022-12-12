@@ -1,6 +1,6 @@
 # Next.js Template
 
-## Why?
+# Why?
 
 Getting a Next.js application up and running is not a trivial exercise. This
 template solves a lot of initial problems and gets you to a well-scaffolded,
@@ -22,7 +22,7 @@ and I know for a fact that it works just as well deployed to
 [AWS Amplify](https://aws.amazon.com/amplify). It should work fine at any host
 that supports Next.js.
 
-## What's Included
+# What's Included
 
 In order to work effectively with this template, you need to be familiar with
 the following technologies (click the links to do a deep dive):
@@ -32,13 +32,14 @@ the following technologies (click the links to do a deep dive):
 | [Mocha](https://mochajs.org/) & [Chai](https://www.chaijs.com/) with [Should](https://www.chaijs.com/guide/styles/#should) syntax | tests & assertions                                          |                                                                                                                                                       |                 |
 | [Lodash](https://lodash.com/docs)                                                                                                 | Javascript utility library                                  |                                                                                                                                                       |                 |
 | [Next.js](https://nextjs.org/)                                                                                                    | host-agnostic production framework & host                   |                                                                                                                                                       |                 |
+| [NextAuth.js](https://next-auth.js.org/) & [Amazon Cognito](https://aws.amazon.com/cognito/)                                      | user authentication                                         |                                                                                                                                                       |                 |
 | [Prettier](https://prettier.io/)                                                                                                  | code formatting                                             |                                                                                                                                                       |                 |
 | [React](https://reactjs.org/), [Redux](https://react-redux.js.org/) & [Redux Toolkit](https://redux-toolkit.js.org/)              | application framework & state                               | [Udemy course](https://www.udemy.com/course/react-redux/)<br>[YouTube playlist](https://youtube.com/playlist?list=PLM0LBHjz37LXSASzEv81f3tGptAsEGQUM) | 52 hrs<br>3 hrs |
 | [ReleaseIt](https://www.npmjs.com/package/release-it)                                                                             | Versioning & release                                        |                                                                                                                                                       |                 |
 | [Semantic UI React](https://react.semantic-ui.com/)                                                                               | front end components with template support fully configured |                                                                                                                                                       |                 |
 | [Serify / Deserify](https://www.npmjs.com/package/@karmaniverous/serify-deserify)                                                 | Redux middleware                                            |                                                                                                                                                       |                 |
 
-## Setting Up Your Dev Environment
+# Setting Up Your Dev Environment
 
 **Use [VS Code](https://code.visualstudio.com/) as your code editor!** This is
 non-negotiable, for reasons that will become obvious in step 2 below.
@@ -58,7 +59,7 @@ non-negotiable, for reasons that will become obvious in step 2 below.
 
 1. Visit the web application at http://localhost:3000.
 
-## `release-it` Configuration
+# `release-it` Configuration
 
 This template includes [release-it](https://github.com/release-it/release-it)
 support that requires these final configurations:
@@ -82,7 +83,7 @@ When you to this, you will find that your sidebar menu and site footer contain a
 link to the current version's release notes. You can configure this by editing
 the component at `components/page/SidebarItemsReleaseNotes.jsx`.
 
-## `lodash` Support
+# `lodash` Support
 
 [`lodash`](https://lodash.com/) is the classic Swiss-army-knife library: you
 could always code around it, and it isn't always appropriate, but it's super
@@ -99,7 +100,7 @@ import _ from 'lodash';
 
 Babel will cherry-pick from `lodash` for you at build time!
 
-## Coming Soon
+# Coming Soon Page
 
 If the following environment variable condition is `true`, the application will
 display a coming soon page:
@@ -120,7 +121,7 @@ If you are hosted at Vercel, the hosting environment will populate the
 This value will be `production` on your production branch and `preview` on all
 other branches.
 
-## UI & Layout
+# UI & Layout
 
 This template uses the [Semantic UI React](https://react.semantic-ui.com/)
 component set.
@@ -150,28 +151,65 @@ of `node_modules\semantic-ui-less\themes`.
 See [here](https://semantic-ui.com/usage/theming.html) to learn more about
 Semantic UI themes.
 
-## Redux, Redux Toolkit & Create Entity Adapter
+# Redux, Redux Toolkit & Create Entity Adapter
 
 [TODO]
 
-## Testing
+# Testing
 
 [TODO]
 
-## Formatting & Linting Support
+# Formatting & Linting Support
 
 [TODO]
 
-## Environment Variables
+# Environment Variables
 
 [TODO]
 
-## Page Model
+# Page Model
 
 [TODO]
+
+# User Authentication
+
+User authentication is enabled using [NextAuth.js](https://next-auth.js.org/)
+against an [Amazon Cognito](https://aws.amazon.com/cognito/) User Pool.
+
+For simplicity, we are assuming that the Cognito User Pool has its hosted UI
+configured. This supports a wide variety of federated login providers, including
+social logins like Google, Facebook, etc. See [this template](TODO) for an
+example of how to set this up.
+
+NextAuth can secure front-end routes (i.e. pages) and back-end routes (i.e. API
+endpoints). You can also pass session credentials to other resources secured by
+the same authentication provider, for example an AWS API Gateway route.
+
+This template demonstrates the following scenarios:
+
+## Public Page.
+
+The home page at `/` is open to the public.
+
+## Private Page
+
+The page at `/private` is only visible to authenticated users. This is
+accomplished by adding the route pattern to the `config` variable in
+[`middleware.js`](/middleware.js), like this:
+
+```js
+export const config = { matcher: ['/private'] };
+```
+
+If an unauthenticated user attempts to access this page, he will be redirected
+to a login page.
+
+Note that the link to the Private page only appears in the sidebar when the user
+is authenticated. This is accomplished in
+[`SidebarItems.jsx`](/components/page/SidebarItems.jsx). Note that `router.push`
+does not support shallow routing to protected pages!
 
 ## Next Steps
 
-- OAuth authentication
 - Connection to AWS API template
 - API endpoints
