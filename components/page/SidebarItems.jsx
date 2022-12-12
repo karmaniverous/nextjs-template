@@ -16,6 +16,7 @@ import useSignOut from '../useSignOut';
 const SidebarItems = () => {
   // Get page state.
   const currentPage = useSelector((state) => state.page.currentPage);
+  const siteName = useSelector((state) => state.page.siteName);
 
   // Create router.
   const router = useRouter();
@@ -39,7 +40,7 @@ const SidebarItems = () => {
 
   return (
     <>
-      <Menu.Item header>Menu Header</Menu.Item>
+      <Menu.Item header>{siteName}</Menu.Item>
 
       <Menu.Item onClick={session ? null : () => signIn('cognito')}>
         {session ? (

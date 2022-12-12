@@ -32,6 +32,7 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   // Get page state.
   const pushRoute = useSelector((state) => state.page.pushRoute);
   const sidebarVisible = useSelector((state) => state.page.sidebarVisible);
+  const siteName = useSelector((state) => state.page.siteName);
 
   // Create dispatcher.
   const dispatch = useDispatch();
@@ -131,6 +132,7 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
           href="/images/favicon/favicon-16x16.png"
         />
         <link rel="manifest" href="/images/favicon/manifest.json" />
+        <title>{siteName}</title>
         <meta name="msapplication-TileColor" content="#ffffff" />
         <meta
           name="msapplication-TileImage"
@@ -148,11 +150,7 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
           key="ogdesc"
         />
         {/* <meta property="og:image" content={pageImage} key="ogimage" /> */}
-        <meta
-          property="og:site_name"
-          content={process.env.NEXT_PUBLIC_SITE_TOKEN}
-          key="ogsitename"
-        />
+        <meta property="og:site_name" content={siteName} key="ogsitename" />
         <meta name="twitter:card" content="summary_large_image" key="twcard" />
         <meta
           name="twitter:description"

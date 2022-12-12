@@ -18,7 +18,7 @@ const initialState = {
   logoutUrl: null,
   pushRoute: null,
   sidebarVisible: false,
-  siteToken: `${process.env.NEXT_PUBLIC_SITE_TOKEN}${
+  siteName: `${process.env.NEXT_PUBLIC_SITE_TOKEN}${
     process.env.NEXT_PUBLIC_VERCEL_ENV === 'preview'
       ? ` ${process.env.NEXT_PUBLIC_PREVIEW_TOKEN}`
       : ''
