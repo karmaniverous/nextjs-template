@@ -8,6 +8,7 @@ import { Header, Segment } from 'semantic-ui-react';
 import { PAGES, setCurrentPage } from '../../state/pageSlice.mjs';
 
 // component imports
+import ApiTest from '../ApiTest';
 import ScrollTarget from '../page/ScrollTarget';
 const ScrollSegment = ScrollTarget(Segment);
 
@@ -38,17 +39,7 @@ const HomePage = () => {
           </Header.Subheader>
         </Header>
 
-        <ScrollSegment name="section1" style={{ minHeight: '400px' }}>
-          <Header as="h3">Section 1</Header>
-        </ScrollSegment>
-
-        <ScrollSegment name="section2" style={{ minHeight: '400px' }}>
-          <Header as="h3">Section 2</Header>
-        </ScrollSegment>
-
-        <ScrollSegment name="section3" style={{ minHeight: '400px' }}>
-          <Header as="h3">Section 3</Header>
-        </ScrollSegment>
+        <ApiTest />
       </ScrollSegment>
     </>
   );

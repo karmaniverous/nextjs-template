@@ -3,6 +3,18 @@ import CognitoProvider from 'next-auth/providers/cognito';
 
 export const authOptions = {
   // Configure one or more authentication providers
+  callbacks: {
+    async jwt({ token, account }) {
+      if (account) {
+        token.id_token = account.id_token;
+      }
+      return token;
+    },
+    async session({ session, token }) {
+      session.id_token = token.id_token;
+      return session;
+    },
+  },
   providers: [
     CognitoProvider({
       checks: 'nonce',

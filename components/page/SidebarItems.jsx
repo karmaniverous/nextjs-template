@@ -81,16 +81,20 @@ const SidebarItems = () => {
 
       {currentPage === PAGES.HOME ? (
         <Menu.Menu>
-          <Menu.Item name="section1" link onClick={doScroll}>
-            Section 1
+          <Menu.Item name="local-public-api" link onClick={doScroll}>
+            Local Public API
           </Menu.Item>
 
-          <Menu.Item name="section2" link onClick={doScroll}>
-            Section 2
+          <Menu.Item name="local-private-api" link onClick={doScroll}>
+            Local Private API
           </Menu.Item>
 
-          <Menu.Item name="section3" link onClick={doScroll}>
-            Section 3
+          <Menu.Item name="remote-public-api" link onClick={doScroll}>
+            Remote Public API
+          </Menu.Item>
+
+          <Menu.Item name="remote-private-api" link onClick={doScroll}>
+            RemotePrivateApi
           </Menu.Item>
         </Menu.Menu>
       ) : null}
@@ -116,16 +120,20 @@ const SidebarItems = () => {
 
       {session && currentPage === PAGES.PRIVATE ? (
         <Menu.Menu>
-          <Menu.Item name="section1" link onClick={doScroll}>
-            Section 1
+          <Menu.Item name="local-public-api" link onClick={doScroll}>
+            Local Public API
           </Menu.Item>
 
-          <Menu.Item name="section2" link onClick={doScroll}>
-            Section 2
+          <Menu.Item name="local-private-api" link onClick={doScroll}>
+            Local Private API
           </Menu.Item>
 
-          <Menu.Item name="section3" link onClick={doScroll}>
-            Section 3
+          <Menu.Item name="remote-public-api" link onClick={doScroll}>
+            Remote Public API
+          </Menu.Item>
+
+          <Menu.Item name="remote-private-api" link onClick={doScroll}>
+            Remote Private API
           </Menu.Item>
         </Menu.Menu>
       ) : null}
