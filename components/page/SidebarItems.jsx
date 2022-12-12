@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { useSession, signIn } from 'next-auth/react';
 import { useCallback } from 'react';
 import { useSelector } from 'react-redux';
-import { scroller } from 'react-scroll';
+import { scroller, animateScroll } from 'react-scroll';
 import { Icon, Menu } from 'semantic-ui-react';
 
 // redux imports
@@ -28,8 +28,9 @@ const SidebarItems = () => {
     [router]
   );
 
-  const doScroll = useCallback((e, { name }) =>
-    scroller.scrollTo(name, { smooth: true })
+  const doScroll = useCallback(
+    (e, { name }) => scroller.scrollTo(name, { smooth: true }),
+    []
   );
 
   // Get session.
@@ -63,7 +64,7 @@ const SidebarItems = () => {
         active={currentPage === PAGES.HOME}
         onClick={
           currentPage === PAGES.HOME
-            ? doScroll
+            ? animateScroll.scrollToTop
             : () =>
                 shallowRoute(
                   resolveRoute({
