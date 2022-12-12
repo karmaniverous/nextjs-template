@@ -18,7 +18,7 @@ const Session = () => {
       icon={session ? 'dropdown' : null}
       onClick={session ? null : () => signIn('cognito')}
       simple
-      text={session ? session.user.email : 'Sign In/Register'}
+      text={session ? session.user.email : 'Sign Up / Sign In'}
     >
       {session ? (
         <Dropdown.Menu>

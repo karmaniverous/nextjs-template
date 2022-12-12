@@ -53,7 +53,7 @@ const SidebarItems = () => {
             </Menu.Menu>
           </>
         ) : (
-          'Sign In/Register'
+          'Sign Up / Sign In'
         )}
       </Menu.Item>
 
