@@ -20,10 +20,10 @@ const SidebarItems = () => {
 
   // Create router.
   const router = useRouter();
-  const shallowRoute = useCallback(
-    (path) =>
+  const route = useCallback(
+    (path, shallow) =>
       router.push(path, null, {
-        shallow: true,
+        shallow,
       }),
     [router]
   );
@@ -66,29 +66,69 @@ const SidebarItems = () => {
           currentPage === PAGES.HOME
             ? animateScroll.scrollToTop
             : () =>
-                shallowRoute(
-                  resolveRoute({
-                    currentPage: PAGES.HOME,
-                  })
+                route(
+                  resolveRoute(
+                    {
+                      currentPage: PAGES.HOME,
+                    },
+                    true
+                  )
                 )
         }
       >
         Home
       </Menu.Item>
 
-      <Menu.Menu>
-        <Menu.Item name="section1" link onClick={doScroll}>
-          Section 1
-        </Menu.Item>
+      {currentPage === PAGES.HOME ? (
+        <Menu.Menu>
+          <Menu.Item name="section1" link onClick={doScroll}>
+            Section 1
+          </Menu.Item>
 
-        <Menu.Item name="section2" link onClick={doScroll}>
-          Section 2
-        </Menu.Item>
+          <Menu.Item name="section2" link onClick={doScroll}>
+            Section 2
+          </Menu.Item>
 
-        <Menu.Item name="section3" link onClick={doScroll}>
-          Section 3
+          <Menu.Item name="section3" link onClick={doScroll}>
+            Section 3
+          </Menu.Item>
+        </Menu.Menu>
+      ) : null}
+
+      {session ? (
+        <Menu.Item
+          name={PAGES.PRIVATE}
+          active={currentPage === PAGES.PRIVATE}
+          onClick={
+            currentPage === PAGES.PRIVATE
+              ? animateScroll.scrollToTop
+              : () =>
+                  route(
+                    resolveRoute({
+                      currentPage: PAGES.PRIVATE,
+                    })
+                  )
+          }
+        >
+          Private
         </Menu.Item>
-      </Menu.Menu>
+      ) : null}
+
+      {session && currentPage === PAGES.PRIVATE ? (
+        <Menu.Menu>
+          <Menu.Item name="section1" link onClick={doScroll}>
+            Section 1
+          </Menu.Item>
+
+          <Menu.Item name="section2" link onClick={doScroll}>
+            Section 2
+          </Menu.Item>
+
+          <Menu.Item name="section3" link onClick={doScroll}>
+            Section 3
+          </Menu.Item>
+        </Menu.Menu>
+      ) : null}
 
       <Menu.Item>
         <Menu.Header>Get Help On...</Menu.Header>

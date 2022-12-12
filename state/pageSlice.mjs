@@ -4,6 +4,7 @@ import { createSlice } from '@reduxjs/toolkit';
 // enums
 export const PAGES = {
   HOME: 'HOME',
+  PRIVATE: 'PRIVATE',
 };
 
 /* REDUX */
@@ -67,6 +68,8 @@ export const resolveRoute = ({ currentPage }) => {
   switch (currentPage) {
     case PAGES.HOME:
       return `/`;
+    case PAGES.PRIVATE:
+      return `/private`;
     default:
       return '/';
   }
