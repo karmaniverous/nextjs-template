@@ -3,8 +3,8 @@ import Link from 'next/link';
 import { Grid, Header, Image } from 'semantic-ui-react';
 
 // component imports
-import SidebarButton from './SidebarButton';
-import SessionDropdown from './SessionDropdown';
+import SidebarButton from './sidebar/SidebarButton';
+import SessionDropdown from '../session/SessionDropdown';
 
 const PageHeader = () => {
   return (

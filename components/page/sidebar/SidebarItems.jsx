@@ -3,14 +3,14 @@ import { useSelector } from 'react-redux';
 import { Menu } from 'semantic-ui-react';
 
 // redux imports
-import { PAGES } from '../../state/pageSlice.mjs';
+import { PAGES } from '../../../state/pageSlice.mjs';
 
 // component imports
 import RenderIf from '../RenderIf';
-import PageMenuItem from '../PageMenuItem';
-import ScrollMenuItem from '../ScrollMenuItem';
-import SessionMenuItem from './SessionMenuItem';
-import SidebarItemsStatic from './SidebarItemsStatic';
+import PageMenuItem from './PageMenuItem';
+import ScrollMenuItem from './ScrollMenuItem';
+import SessionMenuItem from '../../session/SessionMenuItem';
+import SidebarLinks from './SidebarLinks';
 
 const SidebarItems = () => {
   // Get page state.
@@ -71,7 +71,7 @@ const SidebarItems = () => {
       <Menu.Item>
         <Menu.Header>Get Help On...</Menu.Header>
         <Menu.Menu>
-          <SidebarItemsStatic />
+          <SidebarLinks />
         </Menu.Menu>
       </Menu.Item>
     </>

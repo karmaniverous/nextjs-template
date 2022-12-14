@@ -3,7 +3,7 @@ import { useSession, signIn } from 'next-auth/react';
 import { Menu, Icon } from 'semantic-ui-react';
 
 // component imports
-import useSignOut from '../useSignOut';
+import useSignOut from './useSignOut';
 
 const SessionMenuItem = () => {
   // Get session.

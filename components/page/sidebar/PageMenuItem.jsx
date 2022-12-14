@@ -7,7 +7,7 @@ import { animateScroll } from 'react-scroll';
 import { Menu } from 'semantic-ui-react';
 
 // redux imports
-import { PAGES, resolveRoute } from '../state/pageSlice.mjs';
+import { PAGES, resolveRoute } from '../../../state/pageSlice.mjs';
 
 const PageMenuItem = ({ children, page, ...props }) => {
   // Get page state.

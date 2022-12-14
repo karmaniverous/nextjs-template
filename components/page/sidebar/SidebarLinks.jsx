@@ -1,7 +1,7 @@
 // component imports
-import LinkMenuItem from '../LinkMenuItem';
+import LinkMenuItem from './LinkMenuItem';
 
-const SidebarItemsStatic = () => (
+const SidebarLinks = () => (
   <>
     <LinkMenuItem
       href={process.env.NEXT_PUBLIC_GITHUB_LINK}
@@ -49,4 +49,4 @@ const SidebarItemsStatic = () => (
   </>
 );
 
-export default SidebarItemsStatic;
+export default SidebarLinks;

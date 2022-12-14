@@ -22,7 +22,7 @@ import {
 // component imports
 import PageFooter from '../components/page/PageFooter';
 import PageHeader from '../components/page/PageHeader';
-import SidebarItems from '../components/page/SidebarItems';
+import SidebarItems from '../components/page/sidebar/SidebarItems';
 
 // css imports
 import 'semantic-ui-less/semantic.less';

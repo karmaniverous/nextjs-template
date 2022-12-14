@@ -2,7 +2,7 @@
 import { Menu, Segment } from 'semantic-ui-react';
 
 // component imports
-import SidebarItemsStatic from './SidebarItemsStatic';
+import SidebarLinks from './sidebar/SidebarLinks';
 
 const PageFooter = () => {
   return (
@@ -13,7 +13,7 @@ const PageFooter = () => {
         ) : null}
 
         <Menu.Menu position="right">
-          <SidebarItemsStatic />
+          <SidebarLinks />
         </Menu.Menu>
       </Menu>
     </Segment>
