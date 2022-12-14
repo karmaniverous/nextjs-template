@@ -254,7 +254,8 @@ MyApp.getInitialProps = wrapper.getInitialAppProps(
         if (route === '/coming-soon' && !comingSoon) redirect(res, '/');
 
         // Calculate base & logout urls.
-        console.log(inspect(req, false, null));
+        console.log('req', inspect(req, false, null));
+        console.log('socket', inspect(req.socket, false, null));
         const baseUrl = `${req.socket?.encrypted ? 'https' : 'http'}://${
           req.headers.host
         }`;
