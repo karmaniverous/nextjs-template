@@ -8,12 +8,12 @@ import { Header, Segment } from 'semantic-ui-react';
 import { PAGES, setCurrentPage } from '../../state/pageSlice.mjs';
 
 // component imports
-import ApiTest from '../ApiTest';
+import ApiTest from './ApiTest';
 import ScrollTarget from '../page/ScrollTarget';
 const ScrollSegment = ScrollTarget(Segment);
 
 // TODO: pass game index in as prop.
-const HomePage = () => {
+const PrivatePage = () => {
   // Get page state.
   const siteName = useSelector((state) => state.page.siteName);
 
@@ -22,20 +22,20 @@ const HomePage = () => {
 
   // Set current page state.
   useEffect(() => {
-    dispatch(setCurrentPage(PAGES.HOME));
+    dispatch(setCurrentPage(PAGES.PRIVATE));
   }, []);
 
   return (
     <>
       <Head>
-        <title>{`Hello, World! - ${siteName}`}</title>
+        <title>{`Private Page - ${siteName}`}</title>
       </Head>
 
       <ScrollSegment name={PAGES.HOME}>
         <Header as="h2">
-          Home Page
+          Private Page
           <Header.Subheader>
-            This page is visible to all visitors.
+            This page is only visible to authenticated users.
           </Header.Subheader>
         </Header>
 
@@ -45,4 +45,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default PrivatePage;
