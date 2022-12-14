@@ -8,7 +8,7 @@ import { Header, Segment } from 'semantic-ui-react';
 import { PAGES, setCurrentPage } from '../../state/pageSlice.mjs';
 
 // component imports
-import ApiTest from '../ApiTest';
+import ApiTest from './ApiTest';
 import ScrollTarget from '../page/ScrollTarget';
 const ScrollSegment = ScrollTarget(Segment);
 
