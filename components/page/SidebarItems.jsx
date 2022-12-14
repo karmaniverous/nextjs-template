@@ -10,6 +10,7 @@ import { Icon, Menu } from 'semantic-ui-react';
 import { PAGES, resolveRoute } from '../../state/pageSlice.mjs';
 
 // component imports
+import RenderIf from '../RenderIf';
 import SidebarItemsStatic from './SidebarItemsStatic';
 import useSignOut from '../useSignOut';
 
@@ -43,8 +44,8 @@ const SidebarItems = () => {
     <>
       <Menu.Item header>{siteName}</Menu.Item>
 
-      <Menu.Item onClick={session ? null : () => signIn('cognito')}>
-        {session ? (
+      <RenderIf authenticated>
+        <Menu.Item>
           <>
             {session.user.email}
             <Menu.Menu>
@@ -54,10 +55,14 @@ const SidebarItems = () => {
               </Menu.Item>
             </Menu.Menu>
           </>
-        ) : (
-          'Sign Up / Sign In'
-        )}
-      </Menu.Item>
+        </Menu.Item>
+      </RenderIf>
+
+      <RenderIf authenticated={false}>
+        <Menu.Item onClick={() => signIn('cognito')}>
+          Sign Up / Sign In
+        </Menu.Item>
+      </RenderIf>
 
       <Menu.Item
         name={PAGES.HOME}
@@ -79,7 +84,7 @@ const SidebarItems = () => {
         Home
       </Menu.Item>
 
-      {currentPage === PAGES.HOME ? (
+      <RenderIf page={PAGES.HOME}>
         <Menu.Menu>
           <Menu.Item name="local-public-api" link onClick={doScroll}>
             Local Public API
@@ -97,9 +102,9 @@ const SidebarItems = () => {
             RemotePrivateApi
           </Menu.Item>
         </Menu.Menu>
-      ) : null}
+      </RenderIf>
 
-      {session ? (
+      <RenderIf authenticated>
         <Menu.Item
           name={PAGES.PRIVATE}
           active={currentPage === PAGES.PRIVATE}
@@ -116,27 +121,27 @@ const SidebarItems = () => {
         >
           Private
         </Menu.Item>
-      ) : null}
 
-      {session && currentPage === PAGES.PRIVATE ? (
-        <Menu.Menu>
-          <Menu.Item name="local-public-api" link onClick={doScroll}>
-            Local Public API
-          </Menu.Item>
+        <RenderIf page={PAGES.PRIVATE}>
+          <Menu.Menu>
+            <Menu.Item name="local-public-api" link onClick={doScroll}>
+              Local Public API
+            </Menu.Item>
 
-          <Menu.Item name="local-private-api" link onClick={doScroll}>
-            Local Private API
-          </Menu.Item>
+            <Menu.Item name="local-private-api" link onClick={doScroll}>
+              Local Private API
+            </Menu.Item>
 
-          <Menu.Item name="remote-public-api" link onClick={doScroll}>
-            Remote Public API
-          </Menu.Item>
+            <Menu.Item name="remote-public-api" link onClick={doScroll}>
+              Remote Public API
+            </Menu.Item>
 
-          <Menu.Item name="remote-private-api" link onClick={doScroll}>
-            Remote Private API
-          </Menu.Item>
-        </Menu.Menu>
-      ) : null}
+            <Menu.Item name="remote-private-api" link onClick={doScroll}>
+              Remote Private API
+            </Menu.Item>
+          </Menu.Menu>
+        </RenderIf>
+      </RenderIf>
 
       <Menu.Item>
         <Menu.Header>Get Help On...</Menu.Header>
