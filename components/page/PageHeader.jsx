@@ -4,7 +4,7 @@ import { Grid, Header, Image } from 'semantic-ui-react';
 
 // component imports
 import SidebarButton from './SidebarButton';
-import Session from './Session';
+import SessionDropdown from './SessionDropdown';
 
 const PageHeader = () => {
   return (
@@ -31,7 +31,7 @@ const PageHeader = () => {
           only="computer"
           textAlign="right"
         >
-          <Session />
+          <SessionDropdown />
         </Grid.Column>
 
         <Grid.Column

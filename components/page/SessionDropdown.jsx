@@ -5,7 +5,7 @@ import { Dropdown } from 'semantic-ui-react';
 // component imports
 import useSignOut from '../useSignOut';
 
-const Session = () => {
+const SessionDropdown = () => {
   // Get session.
   const { data: session } = useSession();
 
@@ -29,4 +29,4 @@ const Session = () => {
   );
 };
 
-export default Session;
+export default SessionDropdown;
