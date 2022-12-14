@@ -1,8 +1,6 @@
 // npm imports
 import { useSession, signIn } from 'next-auth/react';
-import { useCallback } from 'react';
 import { useSelector } from 'react-redux';
-import { scroller } from 'react-scroll';
 import { Icon, Menu } from 'semantic-ui-react';
 
 // redux imports
@@ -11,17 +9,13 @@ import { PAGES } from '../../state/pageSlice.mjs';
 // component imports
 import RenderIf from '../RenderIf';
 import PageMenuItem from '../PageMenuItem';
+import ScrollMenuItem from '../ScrollMenuItem';
 import SidebarItemsStatic from './SidebarItemsStatic';
 import useSignOut from '../useSignOut';
 
 const SidebarItems = () => {
   // Get page state.
   const siteName = useSelector((state) => state.page.siteName);
-
-  const doScroll = useCallback(
-    (e, { name }) => scroller.scrollTo(name, { smooth: true }),
-    []
-  );
 
   // Get session.
   const { data: session } = useSession();
@@ -55,21 +49,21 @@ const SidebarItems = () => {
 
       <RenderIf page={PAGES.HOME}>
         <Menu.Menu>
-          <Menu.Item name="local-public-api" link onClick={doScroll}>
+          <ScrollMenuItem name="local-public-api">
             Local Public API
-          </Menu.Item>
+          </ScrollMenuItem>
 
-          <Menu.Item name="local-private-api" link onClick={doScroll}>
+          <ScrollMenuItem name="local-private-api">
             Local Private API
-          </Menu.Item>
+          </ScrollMenuItem>
 
-          <Menu.Item name="remote-public-api" link onClick={doScroll}>
+          <ScrollMenuItem name="remote-public-api">
             Remote Public API
-          </Menu.Item>
+          </ScrollMenuItem>
 
-          <Menu.Item name="remote-private-api" link onClick={doScroll}>
+          <ScrollMenuItem name="remote-private-api">
             RemotePrivateApi
-          </Menu.Item>
+          </ScrollMenuItem>
         </Menu.Menu>
       </RenderIf>
 
@@ -78,21 +72,21 @@ const SidebarItems = () => {
 
         <RenderIf page={PAGES.PRIVATE}>
           <Menu.Menu>
-            <Menu.Item name="local-public-api" link onClick={doScroll}>
+            <ScrollMenuItem name="local-public-api">
               Local Public API
-            </Menu.Item>
+            </ScrollMenuItem>
 
-            <Menu.Item name="local-private-api" link onClick={doScroll}>
+            <ScrollMenuItem name="local-private-api">
               Local Private API
-            </Menu.Item>
+            </ScrollMenuItem>
 
-            <Menu.Item name="remote-public-api" link onClick={doScroll}>
+            <ScrollMenuItem name="remote-public-api">
               Remote Public API
-            </Menu.Item>
+            </ScrollMenuItem>
 
-            <Menu.Item name="remote-private-api" link onClick={doScroll}>
+            <ScrollMenuItem name="remote-private-api">
               Remote Private API
-            </Menu.Item>
+            </ScrollMenuItem>
           </Menu.Menu>
         </RenderIf>
       </RenderIf>
