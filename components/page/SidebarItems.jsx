@@ -1,33 +1,22 @@
 // npm imports
-import { useRouter } from 'next/router';
 import { useSession, signIn } from 'next-auth/react';
 import { useCallback } from 'react';
 import { useSelector } from 'react-redux';
-import { scroller, animateScroll } from 'react-scroll';
+import { scroller } from 'react-scroll';
 import { Icon, Menu } from 'semantic-ui-react';
 
 // redux imports
-import { PAGES, resolveRoute } from '../../state/pageSlice.mjs';
+import { PAGES } from '../../state/pageSlice.mjs';
 
 // component imports
 import RenderIf from '../RenderIf';
+import PageMenuItem from '../PageMenuItem';
 import SidebarItemsStatic from './SidebarItemsStatic';
 import useSignOut from '../useSignOut';
 
 const SidebarItems = () => {
   // Get page state.
-  const currentPage = useSelector((state) => state.page.currentPage);
   const siteName = useSelector((state) => state.page.siteName);
-
-  // Create router.
-  const router = useRouter();
-  const route = useCallback(
-    (path, shallow) =>
-      router.push(path, null, {
-        shallow,
-      }),
-    [router]
-  );
 
   const doScroll = useCallback(
     (e, { name }) => scroller.scrollTo(name, { smooth: true }),
@@ -46,15 +35,13 @@ const SidebarItems = () => {
 
       <RenderIf authenticated>
         <Menu.Item>
-          <>
-            {session.user.email}
-            <Menu.Menu>
-              <Menu.Item onClick={signOut}>
-                <Icon name="log out" />
-                Sign Out
-              </Menu.Item>
-            </Menu.Menu>
-          </>
+          {session?.user?.email}
+          <Menu.Menu>
+            <Menu.Item onClick={signOut}>
+              <Icon name="log out" />
+              Sign Out
+            </Menu.Item>
+          </Menu.Menu>
         </Menu.Item>
       </RenderIf>
 
@@ -64,25 +51,7 @@ const SidebarItems = () => {
         </Menu.Item>
       </RenderIf>
 
-      <Menu.Item
-        name={PAGES.HOME}
-        active={currentPage === PAGES.HOME}
-        onClick={
-          currentPage === PAGES.HOME
-            ? animateScroll.scrollToTop
-            : () =>
-                route(
-                  resolveRoute(
-                    {
-                      currentPage: PAGES.HOME,
-                    },
-                    true
-                  )
-                )
-        }
-      >
-        Home
-      </Menu.Item>
+      <PageMenuItem page={PAGES.HOME}>Home</PageMenuItem>
 
       <RenderIf page={PAGES.HOME}>
         <Menu.Menu>
@@ -105,22 +74,7 @@ const SidebarItems = () => {
       </RenderIf>
 
       <RenderIf authenticated>
-        <Menu.Item
-          name={PAGES.PRIVATE}
-          active={currentPage === PAGES.PRIVATE}
-          onClick={
-            currentPage === PAGES.PRIVATE
-              ? animateScroll.scrollToTop
-              : () =>
-                  route(
-                    resolveRoute({
-                      currentPage: PAGES.PRIVATE,
-                    })
-                  )
-          }
-        >
-          Private
-        </Menu.Item>
+        <PageMenuItem page={PAGES.PRIVATE}>Private</PageMenuItem>
 
         <RenderIf page={PAGES.PRIVATE}>
           <Menu.Menu>

@@ -17,8 +17,7 @@ const RenderIf = ({ children, page, authenticated }) => {
 
   // Apply conditions.
   if (!_.isNil(page) && page !== currentPage) return null;
-
-  if (!_.isNil(authenticated) && authenticated !== !!session) return null;
+  if (!_.isNil(authenticated) && authenticated !== !!session?.user) return null;
 
   return children;
 };
