@@ -1,55 +1,51 @@
-// npm imports
-import { Icon, Menu } from 'semantic-ui-react';
-
 // component imports
-import SidebarItemsReleaseNotes from './SidebarItemsReleaseNotes';
+import LinkMenuItem from '../LinkMenuItem';
 
 const SidebarItemsStatic = () => (
   <>
-    {process.env.NEXT_PUBLIC_GITHUB_LINK ? (
-      <Menu.Item
-        name="github"
-        href={process.env.NEXT_PUBLIC_GITHUB_LINK}
-        target="_blank"
-        rel="noreferrer"
-      >
-        <Icon name="github" />
-        GitHub
-      </Menu.Item>
-    ) : null}
+    <LinkMenuItem
+      href={process.env.NEXT_PUBLIC_GITHUB_LINK}
+      icon="github"
+      renderIf={process.env.NEXT_PUBLIC_GITHUB_LINK}
+      target="_blank"
+    >
+      GitHub
+    </LinkMenuItem>
 
-    {process.env.NEXT_PUBLIC_TWITTER_HANDLE ? (
-      <Menu.Item
-        name="twitter"
-        href={`https://twitter.com/${process.env.NEXT_PUBLIC_TWITTER_HANDLE}`}
-        target="_blank"
-        rel="noreferrer"
-      >
-        <Icon name="twitter" />
-        Twitter
-      </Menu.Item>
-    ) : null}
+    <LinkMenuItem
+      href={`https://twitter.com/${process.env.NEXT_PUBLIC_TWITTER_HANDLE}`}
+      icon="twitter"
+      renderIf={process.env.NEXT_PUBLIC_TWITTER_HANDLE}
+      target="_blank"
+    >
+      Twitter
+    </LinkMenuItem>
 
-    {process.env.NEXT_PUBLIC_TELEGRAM_HANDLE ? (
-      <Menu.Item
-        name="telegram"
-        href={`https://t.me/${process.env.NEXT_PUBLIC_TELEGRAM_HANDLE}`}
-        target="_blank"
-        rel="noreferrer"
-      >
-        <Icon name="telegram" />
-        Telegram
-      </Menu.Item>
-    ) : null}
+    <LinkMenuItem
+      href={`https://t.me/${process.env.NEXT_PUBLIC_TELEGRAM_HANDLE}`}
+      icon="telegram"
+      renderIf={process.env.NEXT_PUBLIC_TELEGRAM_HANDLE}
+      target="_blank"
+    >
+      Telegram
+    </LinkMenuItem>
 
-    {process.env.NEXT_PUBLIC_EMAIL ? (
-      <Menu.Item name="email" href={`mailto:${process.env.NEXT_PUBLIC_EMAIL}`}>
-        <Icon name="mail" />
-        Email
-      </Menu.Item>
-    ) : null}
+    <LinkMenuItem
+      href={`mailto:${process.env.NEXT_PUBLIC_EMAIL}`}
+      icon="mail"
+      renderIf={process.env.NEXT_PUBLIC_EMAIL}
+    >
+      Email
+    </LinkMenuItem>
 
-    <SidebarItemsReleaseNotes />
+    <LinkMenuItem
+      href={`${process.env.NEXT_PUBLIC_GITHUB_LINK}/releases/tag/${process.env.NEXT_PUBLIC_NPM_PACKAGE_VERSION}`}
+      icon="cloud upload"
+      renderIf={process.env.NEXT_PUBLIC_GITHUB_LINK}
+      target="_blank"
+    >
+      {`v${process.env.NEXT_PUBLIC_NPM_PACKAGE_VERSION} Release Notes`}
+    </LinkMenuItem>
   </>
 );
 
