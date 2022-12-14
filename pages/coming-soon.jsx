@@ -22,7 +22,7 @@ const ComingSoon = () => {
       <Segment>
         <Header as="h2">HelloWorld is Coming Soon!</Header>
         <p>
-          This is a static coming soon page. See the template
+          This is a static coming soon page. See the template{' '}
           <a href="https://github.com/karmaniverous/nextjs-template#deploying-to-vercel">
             README
           </a>{' '}
