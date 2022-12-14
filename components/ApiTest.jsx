@@ -32,7 +32,7 @@ const ApiTest = ({ log }) => {
         <ApiQuery
           log={log}
           method="get"
-          url="https://api.veterancrowd.com/v0-dev/hello"
+          url="https://aws-api-template.karmanivero.us/v0-dev/hello"
         />
       </ScrollSegment>
 
@@ -43,7 +43,7 @@ const ApiTest = ({ log }) => {
           authenticate
           log={log}
           method="get"
-          url="https://api.veterancrowd.com/v0-dev/secure-hello"
+          url="https://aws-api-template.karmanivero.us/v0-dev/secure-hello"
         />
       </ScrollSegment>
     </>
