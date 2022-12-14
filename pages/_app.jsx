@@ -9,6 +9,7 @@ import { SessionProvider } from 'next-auth/react';
 import { useEffect, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Container, Grid, Menu, Sidebar, Sticky } from 'semantic-ui-react';
+import { inspect } from 'util';
 
 // redux imports
 import { wrapper } from '../state/store.mjs';
@@ -253,7 +254,7 @@ MyApp.getInitialProps = wrapper.getInitialAppProps(
         if (route === '/coming-soon' && !comingSoon) redirect(res, '/');
 
         // Calculate base & logout urls.
-        console.log(JSON.stringify(req, null, 2));
+        console.log(inspect(req, false, null));
         const baseUrl = `${req.socket?.encrypted ? 'https' : 'http'}://${
           req.headers.host
         }`;
