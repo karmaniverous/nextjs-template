@@ -47,8 +47,8 @@ the following technologies (click the links to do a deep dive):
 
 # Setting Up Your Dev Environment
 
-**Use [VS Code](https://code.visualstudio.com/) as your code editor!** This is
-non-negotiable, for reasons that will become obvious in step 2 below.
+**Use [VS Code](https://code.visualstudio.com/) as your code editor!** Not an
+absolute requirement, but you'll be glad you did.
 
 1. Clone this repository to your local machine.
 
@@ -65,7 +65,7 @@ non-negotiable, for reasons that will become obvious in step 2 below.
 
 1. Visit the web application at http://localhost:3000.
 
-# `release-it` Configuration
+## `release-it` Configuration
 
 This template includes [release-it](https://github.com/release-it/release-it)
 support that requires these final configurations:
@@ -77,19 +77,19 @@ support that requires these final configurations:
    [personal access token](https://github.com/settings/tokens/new?scopes=repo&description=release-it)
    and add it as the value of `GITHUB_TOKEN` in `.env.development.local`.
 
-You can now build your project and publish a release to GitHub and NPM with
-these commands:
+You can now publish a release to GitHub with this command:
 
 ```
-npm run build
 npm run release
 ```
 
-When you to this, you will find that your sidebar menu and site footer contain a
-link to the current version's release notes. You can configure this by editing
-the component at `components/page/SidebarItemsReleaseNotes.jsx`.
+If you add your GitHub repo link to environmental variable
+`NEXT_PUBLIC_GITHUB_LINK` in [`.env`](./.env), you will find that your sidebar
+menu and site footer contain a link to the current version's release notes.
 
-# `lodash` Support
+# The Goodies
+
+## `lodash`
 
 [`lodash`](https://lodash.com/) is the classic Swiss-army-knife library: you
 could always code around it, and it isn't always appropriate, but it's super
@@ -98,15 +98,118 @@ nice to have it in your back pocket.
 Trouble is, it's a HUGE library. You can cherry-pick from it, but that gets
 painful fast. So I've included & configured
 [`babel-plugin-lodash`](https://www.npmjs.com/package/babel-plugin-lodash). Now
-you can just import the entire library in your code, like this:
+you can just import the entire library in your code and use whatever functions
+you like, like this:
 
 ```js
 import _ from 'lodash';
+
+if (!_.isNil(null)) console.log('Hello, world!');
 ```
 
-Babel will cherry-pick from `lodash` for you at build time!
+Babel will cherry-pick from `lodash` for you at build time, and your bundle will
+stay small!
 
-# Coming Soon Page
+## Semantic UI
+
+This template uses the [Semantic UI React](https://react.semantic-ui.com/)
+component set.
+
+Your starting point is a nice reactive layout with a sticky sidebar that
+collapses down to a hamburger menu at mobile resolutions. There were some
+difficulties getting this to work properly with the installed version of
+Semantic UI; I've resolved these and commented those fixes in the code.
+
+The Semantic toolkit is super flexible, so you can easily morph this into
+whatever layout works for you.
+
+Semantic UI has a fantastic LESS-based theming system. It was a HUGE challenge
+getting this working properly within the Next.js context. Problem solved,
+though, so out of the box this template offers full Semantic UI theme support.
+
+All aspects of the site theme can be controlled by modifying the contents of the
+`semantic-ui` directory.
+
+Out of the box, this template leverages the Semantic UI `default` theme. Switch
+themes globally or at a component level by modifying
+[`theme.config`](./theme.config). Override every conceivable aspect of the
+current theme, with full access to all related LESS variables, by editing the
+templates in the `site` directory. To examine existing themes and borrow their
+settings as overrides, see the contents of
+[`node_modules\semantic-ui-less\themes`](.node_modules\semantic-ui-less\themes).
+
+[Click here](https://semantic-ui.com/usage/theming.html) to learn more about
+Semantic UI themes.
+
+## User Authentication
+
+User authentication is enabled using [NextAuth.js](https://next-auth.js.org/)
+against an
+[AWS Cognito User Pool](https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools.html).
+
+For simplicity, we are assuming that the Cognito User Pool has its hosted UI
+configured. This supports a wide variety of federated login providers, including
+social logins like Google, Facebook, etc. See my
+[AWS API Template](https://github.com/karmaniverous/aws-api-template) for an
+example of how to set this up.
+
+NextAuth can secure front-end routes (i.e. pages) and back-end routes (i.e. API
+endpoints). You can also pass session credentials to other resources secured by
+the same authentication provider, for example an AWS API Gateway route. See the
+[demo site](https://nextjs-template-preview.karmanivero.us/) for an example of
+this in action.
+
+## Redux, Redux Toolkit & Create Entity Adapter
+
+`TODO`
+
+## Testing
+
+`TODO`
+
+## Formatting & Linting Support
+
+`TODO`
+
+## Next Bundle Analyzer
+
+`TODO`
+
+# Site Architecture
+
+## Environment Variables
+
+`TODO`
+
+## Page Model
+
+`TODO`
+
+## Configured Pages
+
+### Public Home Page
+
+`TODO`
+
+### Private Page
+
+The page at `/private` is only visible to authenticated users. This is
+accomplished by adding the route pattern to the `config` variable in
+[`middleware.js`](/middleware.js), like this:
+
+```js
+export const config = { matcher: ['/private'] };
+```
+
+If an unauthenticated user attempts to access this page, he will be redirected
+to a login page.
+
+Note that the link to the Private page only appears in the sidebar when the user
+is authenticated. This is accomplished in
+[`SidebarItems.jsx`](/components/page/SidebarItems.jsx). Note that `router.push`
+does not support shallow routing to protected pages!
+
+### Coming Soon Page
 
 If the following environment variable condition is `true`, the application will
 display a coming soon page:
@@ -127,95 +230,6 @@ If you are hosted at Vercel, the hosting environment will populate the
 This value will be `production` on your production branch and `preview` on all
 other branches.
 
-# UI & Layout
+# Components
 
-This template uses the [Semantic UI React](https://react.semantic-ui.com/)
-component set.
-
-Your starting point is a nice reactive layout with a sticky sidebar that
-collapses down to a hamburger menu at mobile resolutions. There were some
-difficulties getting this to work properly with the installed version of
-Semantic UI; I've resolved these and commented those fixes in the code.
-
-The Semantic toolkit is super flexible, so you can easily morph this into
-whatever layout works for you.
-
-Semantic UI has a fantastic LESS-based theming system. It was a HUGE challenge
-getting this working properly within the Next.js context. Problem solved,
-though, so out of the box this template offers full Semantic UI theme support.
-
-All aspects of the site theme can be controlled by modifying the contents of the
-`semantic-ui` directory.
-
-Out of the box, this template leverages the `default` Semantic UI theme. Switch
-themes globally or at a component level by modifying the `theme.config` file.
-Override every conceivable aspect of the current theme, with full access to all
-related LESS variables, by editing the templates in the `site` directory. To
-examine existing themes and borrow their settings as overrides, see the contents
-of `node_modules\semantic-ui-less\themes`.
-
-See [here](https://semantic-ui.com/usage/theming.html) to learn more about
-Semantic UI themes.
-
-# Redux, Redux Toolkit & Create Entity Adapter
-
-[TODO]
-
-# Testing
-
-[TODO]
-
-# Formatting & Linting Support
-
-[TODO]
-
-# Environment Variables
-
-[TODO]
-
-# Page Model
-
-[TODO]
-
-# User Authentication
-
-User authentication is enabled using [NextAuth.js](https://next-auth.js.org/)
-against an [Amazon Cognito](https://aws.amazon.com/cognito/) User Pool.
-
-For simplicity, we are assuming that the Cognito User Pool has its hosted UI
-configured. This supports a wide variety of federated login providers, including
-social logins like Google, Facebook, etc. See [this template](TODO) for an
-example of how to set this up.
-
-NextAuth can secure front-end routes (i.e. pages) and back-end routes (i.e. API
-endpoints). You can also pass session credentials to other resources secured by
-the same authentication provider, for example an AWS API Gateway route.
-
-This template demonstrates the following scenarios:
-
-## Public Page.
-
-The home page at `/` is open to the public.
-
-## Private Page
-
-The page at `/private` is only visible to authenticated users. This is
-accomplished by adding the route pattern to the `config` variable in
-[`middleware.js`](/middleware.js), like this:
-
-```js
-export const config = { matcher: ['/private'] };
-```
-
-If an unauthenticated user attempts to access this page, he will be redirected
-to a login page.
-
-Note that the link to the Private page only appears in the sidebar when the user
-is authenticated. This is accomplished in
-[`SidebarItems.jsx`](/components/page/SidebarItems.jsx). Note that `router.push`
-does not support shallow routing to protected pages!
-
-## Next Steps
-
-- Connection to AWS API template
-- API endpoints
+`TODO`
