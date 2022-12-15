@@ -175,7 +175,11 @@ this in action.
 
 `TODO`
 
-# Site Architecture
+# Project Architecture
+
+## File Structure
+
+`TODO`
 
 ## Environment Variables
 
@@ -231,5 +235,15 @@ This value will be `production` on your production branch and `preview` on all
 other branches.
 
 # Components
+
+`TODO`
+
+# Common Tasks
+
+## Add a Private Page
+
+`TODO`
+
+## Add a Private API Route
 
 `TODO`
