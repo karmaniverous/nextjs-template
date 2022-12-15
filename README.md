@@ -1,5 +1,11 @@
 # Next.js Template
 
+**This README is under construction!**
+
+I've done a ton of work on this template in the past few weeks and am now
+bringing the README into sync. As I type it's 2022-12-15. Should be good to go
+in a couple of days!
+
 # Why?
 
 Getting a Next.js application up and running is not a trivial exercise. This
