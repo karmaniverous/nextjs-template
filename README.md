@@ -176,9 +176,32 @@ the same authentication provider, for example an AWS API Gateway route. See the
 [demo site](https://nextjs-template-preview.karmanivero.us/) for an example of
 this in action.
 
-## Redux, Redux Toolkit & Create Entity Adapter
+## Redux Toolkit & Create Entity Adapter
 
-`TODO`
+This template relies heavily on the
+[Redux Toolkit](https://redux-toolkit.js.org/) for application state management.
+
+Redux Toolkit is an efficient, highly opinionated wrapper around the very
+popular [Redux](https://redux.js.org/) library. It's better in every way and is
+the approach recommended by the Redux team.
+
+Getting Redux Toolkit to play nicely with Next.js is not a trivial exercise and
+requires making some choices. This template solves those problems in an elegant
+way.
+
+See [State Management](#state-management) below for an explanation of how this
+template leverages the Redux Toolkit.
+
+Redux Toolkit features the
+[createEntityAdapter](https://redux-toolkit.js.org/api/createEntityAdapter)
+(CRA), which generates a set of prebuilt reducers and selectors for performing
+CRUD operations on a normalized state structure containing instances of a
+particular type of data object. **Think of it as a NoSQL database in your Redux
+state!**
+
+The front-end application doesn't leverage CRA, but I've included a sample
+[entity slice](./state/entitySlice.mjs) in my state model and written
+[some tests](./test/entity.test.jsx) to demonstrate how it works.
 
 ## Testing
 
@@ -199,6 +222,10 @@ this in action.
 `TODO`
 
 ## Environment Variables
+
+`TODO`
+
+## State Management
 
 `TODO`
 
@@ -270,5 +297,11 @@ other branches.
 `TODO`
 
 ## Create a Release
+
+`TODO`
+
+# FAQ
+
+## Why are all your tests `.jsx` files?
 
 `TODO`
