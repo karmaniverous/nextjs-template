@@ -78,17 +78,21 @@ Copy each of these files and remove the `template` extension from the copy.
 **Do not simply rename these files!** Anybody who pulls your repo will need
 these templates to create the same files in his own local environment.
 
-## `release-it` Configuration
+## Connect to GitHub
 
-This template includes [release-it](https://github.com/release-it/release-it)
-support that requires these final configurations:
+This template supports automated release management with
+[`release-it`](https://github.com/release-it/release-it).
 
-1. Create a copy of `.env.development.local.template` and name it
-   `.env.development.local`
+If you use GitHub, create a
+[Personal Access Token](https://github.com/settings/tokens/new?scopes=repo&description=release-it)
+and add it as the value of `GITHUB_TOKEN` in `.env.local`.
 
-1. Create a GitHub
-   [personal access token](https://github.com/settings/tokens/new?scopes=repo&description=release-it)
-   and add it as the value of `GITHUB_TOKEN` in `.env.development.local`.
+If you use GitLab, follow
+[these instructions](https://github.com/release-it/release-it#gitlab-releases)
+and place your token in the same file.
+
+For other release control systems, consult the
+[`release-it` README](https://github.com/release-it/release-it#readme).
 
 You can now publish a release to GitHub with this command:
 
