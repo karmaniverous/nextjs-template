@@ -65,6 +65,19 @@ absolute requirement, but you'll be glad you did.
 
 1. Visit the web application at http://localhost:3000.
 
+## Create Local Environment Variable Files
+
+Look for these files in your project directory:
+
+- `.env.local.template`
+- `.env.development.local.template`
+- `.env.production.local.template`
+
+Copy each of these files and remove the `template` extension from the copy.
+
+**Do not simply rename these files!** Anybody who pulls your repo will need
+these templates to create the same files in his own local environment.
+
 ## `release-it` Configuration
 
 This template includes [release-it](https://github.com/release-it/release-it)
@@ -83,7 +96,7 @@ You can now publish a release to GitHub with this command:
 npm run release
 ```
 
-If you add your GitHub repo link to environmental variable
+If you add your GitHub repo link to environment variable
 `NEXT_PUBLIC_GITHUB_LINK` in [`.env`](./.env), you will find that your sidebar
 menu and site footer contain a link to the current version's release notes.
 
@@ -245,5 +258,13 @@ other branches.
 `TODO`
 
 ## Add a Private API Route
+
+`TODO`
+
+## Create & Run a Local Production Build
+
+`TODO`
+
+## Create a Release
 
 `TODO`
