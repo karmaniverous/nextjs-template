@@ -50,16 +50,17 @@ the following technologies (click the links to do a deep dive):
 **Use [VS Code](https://code.visualstudio.com/) as your code editor!** Not an
 absolute requirement, but you'll be glad you did.
 
-1. Clone this repository to your local machine.
+1. [Click here](https://github.com/karmaniverous/nextjs-template/generate) to
+   generate a new repository from this template.
+
+1. Clone the new repository to your local machine.
 
 1. VS Code will ask to install a bunch of recommended extensions. Accept all of
    them.
 
-1. Install dependencies by running `npm install`.
+1. Set the version in [`package.json`](./package.json) to `0.0.0`.
 
-1. Remove the `.template` extension from `.env.local.template` and
-   `.env.development.local.template`. These files are blocked by `.gitignore`,
-   so they are safe for environment secrets!
+1. Install dependencies by running `npm install`.
 
 1. Start the development server by running `npm run dev`.
 
@@ -69,11 +70,11 @@ absolute requirement, but you'll be glad you did.
 
 Look for these files in your project directory:
 
-- `.env.local.template`
-- `.env.development.local.template`
-- `.env.production.local.template`
+- [`.env.local.template`](./.env.local.template)
+- [`.env.development.local.template`](./.env.development.local.template)
+- [`.env.production.local.template`](./.env.production.local.template)
 
-Copy each of these files and remove the `template` extension from the copy.
+Copy each of these files and remove the `.template` extension from the copy.
 
 **Do not simply rename these files!** Anybody who pulls your repo will need
 these templates to create the same files in his own local environment.
@@ -94,7 +95,7 @@ and place your token in the same file.
 For other release control systems, consult the
 [`release-it` README](https://github.com/release-it/release-it#readme).
 
-You can now publish a release to GitHub with this command:
+You can now create a release at GitHub with this command:
 
 ```
 npm run release
@@ -284,11 +285,11 @@ other branches.
 
 # Common Tasks
 
-## Add a Private Page
+## Add a Page
 
 `TODO`
 
-## Add a Private API Route
+## Add an API Route
 
 `TODO`
 
@@ -305,3 +306,8 @@ other branches.
 ## Why are all your tests `.jsx` files?
 
 `TODO`
+
+## Integrate a Template Update
+
+Follow
+[these instructions](https://karmanivero.us/blog/installing-github-repo-template-updates/).
