@@ -20,10 +20,10 @@ chai.use(chaiMatchPattern);
 
 const should = chai.should(); // eslint-disable-line
 
-describe('back-end test', async function () {
+describe('back-end test', function () {
   this.timeout(0); // Disable async timeouts.
 
-  it('passes', async () => {
+  it('passes', async function () {
     true.should.be.ok;
   });
 });

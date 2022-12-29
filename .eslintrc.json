@@ -6,6 +6,8 @@
   },
   "extends": [
     "eslint:recommended",
+    "plugin:mocha/recommended",
+    "plugin:promise/recommended",
     "plugin:react/recommended",
     "plugin:react/jsx-runtime",
     "plugin:@next/next/recommended"
@@ -18,7 +20,7 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "plugins": ["react"],
+  "plugins": ["mocha", "promise", "react"],
   "rules": { "react/jsx-uses-react": "off", "react/react-in-jsx-scope": "off" },
   "settings": {
     "react": {
