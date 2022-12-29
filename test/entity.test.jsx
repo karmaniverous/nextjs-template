@@ -24,27 +24,27 @@ let getState;
 
 ({ dispatch, getState } = makeStore());
 
-describe('STATE', async function () {
-  beforeEach(async () => {
+describe('STATE', function () {
+  beforeEach(async function () {
     ({ dispatch, getState } = makeStore());
   });
 
-  describe('ENTITY', async () => {
-    describe('* validations', async () => {
-      it('* initializes state', async () => {
+  describe('ENTITY', function () {
+    describe('* validations', function () {
+      it('* initializes state', async function () {
         getState().entity.should.deep.equal({ ids: [], entities: {} });
       });
     });
 
-    describe('add entities', async () => {
-      beforeEach(async () => {
+    describe('add entities', function () {
+      beforeEach(async function () {
         dispatch(addEntity({ entityKey: 'entity0' }));
 
         dispatch(addEntity({ entityKey: 'entity1' }));
       });
 
-      describe('* validations', async () => {
-        it('* select all entities', async () => {
+      describe('* validations', function () {
+        it('* select all entities', async function () {
           const entities = selectEntities(getState().entity);
 
           entities.should.matchPattern(`[
@@ -61,7 +61,7 @@ describe('STATE', async function () {
           ]`);
         });
 
-        it('* select one entity', async () => {
+        it('* select one entity', async function () {
           const entities = selectEntities(getState().entity, {
             entityKey: 'entity0',
           });
@@ -75,7 +75,7 @@ describe('STATE', async function () {
           ]`);
         });
 
-        it('* select invalid entity', async () => {
+        it('* select invalid entity', async function () {
           const entities = selectEntities(getState().entity, {
             entityKey: 'entity42',
           });
@@ -84,10 +84,10 @@ describe('STATE', async function () {
         });
       });
 
-      describe('update entities', async () => {
+      describe('update entities', function () {
         const created = {};
 
-        beforeEach(async () => {
+        beforeEach(async function () {
           // Capture created timestamps.
           created.entity0 = getState().entity.entities.entity0?.created;
           created.entity1 = getState().entity.entities.entity1?.created;
@@ -101,8 +101,8 @@ describe('STATE', async function () {
           );
         });
 
-        describe('validations', async () => {
-          it('* select all entities', async () => {
+        describe('validations', function () {
+          it('* select all entities', async function () {
             const entities = selectEntities(getState().entity);
 
             entities.should.matchPattern(`[
@@ -121,13 +121,13 @@ describe('STATE', async function () {
         });
       });
 
-      describe('remove entity', async () => {
-        beforeEach(async () => {
+      describe('remove entity', function () {
+        beforeEach(async function () {
           dispatch(removeEntity('entity1'));
         });
 
-        describe('validations', async () => {
-          it('* select all entities', async () => {
+        describe('validations', function () {
+          it('* select all entities', async function () {
             const entities = selectEntities(getState().entity);
 
             entities.should.matchPattern(`[

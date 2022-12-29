@@ -2,7 +2,6 @@
 import _ from 'lodash';
 import { useSession } from 'next-auth/react';
 import PropTypes from 'prop-types';
-import { any } from 'prop-types';
 import { useSelector } from 'react-redux';
 
 // redux imports
@@ -23,7 +22,7 @@ const RenderIf = ({ children, page, authenticated }) => {
 };
 
 RenderIf.propTypes = {
-  children: any,
+  children: PropTypes.any,
   page: PropTypes.oneOf(Object.values(PAGES)),
   authenticated: PropTypes.bool,
 };
