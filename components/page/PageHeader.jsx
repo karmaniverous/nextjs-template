@@ -12,15 +12,13 @@ const PageHeader = () => {
       <Grid.Row>
         <Grid.Column mobile={12} tablet={6} computer={5} largeScreen={4}>
           <Link href="/">
-            <a>
-              <Header as="h1">
-                <Image alt="" src="/images/logo.png" />
-                <Header.Content>
-                  HelloWorld
-                  <Header.Subheader>Nice ta meetcha!</Header.Subheader>
-                </Header.Content>
-              </Header>
-            </a>
+            <Header as="h1">
+              <Image alt="" src="/images/logo.png" />
+              <Header.Content>
+                HelloWorld
+                <Header.Subheader>Nice ta meetcha!</Header.Subheader>
+              </Header.Content>
+            </Header>
           </Link>
         </Grid.Column>
 
