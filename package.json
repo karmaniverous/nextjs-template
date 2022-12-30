@@ -77,27 +77,6 @@
     "release-it": "^15.5.1",
     "treeify": "^1.1.0"
   },
-  "babel": {
-    "presets": [
-      "@babel/preset-env",
-      [
-        "@babel/preset-react",
-        {
-          "runtime": "automatic"
-        }
-      ]
-    ],
-    "plugins": [
-      "lodash",
-      [
-        "module-extension",
-        {
-          "mjs": ""
-        }
-      ],
-      "@babel/plugin-syntax-import-assertions"
-    ]
-  },
   "prettier": {
     "useTabs": false,
     "singleQuote": true,
