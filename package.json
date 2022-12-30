@@ -1,29 +1,8 @@
 {
   "name": "@karmaniverous/next-template",
-  "version": "0.1.0",
   "description": "Next.js ES6 template with support for Redux Toolkit, Serify, Lodash, Semantic UI, and Mocha + Chai.",
-  "main": "index.js",
-  "scripts": {
-    "analyze": "cross-env ANALYZE=true next build",
-    "analyze:browser": "cross-env BUNDLE_ANALYZE=browser next build",
-    "analyze:server": "cross-env BUNDLE_ANALYZE=server next build",
-    "build": "next build",
-    "cli": "node ./cli/cli.mjs",
-    "dev": "next dev",
-    "release": "npx dotenv -c -- release-it",
-    "start": "next start",
-    "test": "mocha"
-  },
-  "mocha": {
-    "require": [
-      "@babel/register",
-      "chai-as-promised",
-      "chai-match-pattern"
-    ],
-    "spec": "./{,!(node_modules)/**}/*.test.*js*"
-  },
   "author": "@karmaniverous",
-  "license": "UNLICENSED",
+  "license": "BSD-3-Clause",
   "dependencies": {
     "@karmaniverous/merge-delimited-lists": "^0.0.2",
     "@karmaniverous/serify-deserify": "^1.2.9",
@@ -77,6 +56,15 @@
     "release-it": "^15.5.1",
     "treeify": "^1.1.0"
   },
+  "main": "index.js",
+  "mocha": {
+    "require": [
+      "@babel/register",
+      "chai-as-promised",
+      "chai-match-pattern"
+    ],
+    "spec": "./{,!(node_modules)/**}/*.test.*js*"
+  },
   "prettier": {
     "useTabs": false,
     "singleQuote": true,
@@ -90,5 +78,17 @@
     "npm": {
       "publish": false
     }
-  }
+  },
+  "scripts": {
+    "analyze": "cross-env ANALYZE=true next build",
+    "analyze:browser": "cross-env BUNDLE_ANALYZE=browser next build",
+    "analyze:server": "cross-env BUNDLE_ANALYZE=server next build",
+    "build": "next build",
+    "cli": "node ./cli/cli.mjs",
+    "dev": "next dev",
+    "release": "npx dotenv -c -- release-it",
+    "start": "next start",
+    "test": "mocha"
+  },
+  "version": "0.1.0"
 }
