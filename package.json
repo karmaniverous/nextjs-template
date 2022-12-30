@@ -53,7 +53,7 @@
     "fs-extra": "^11.1.0",
     "mocha": "^10.1.0",
     "next-with-less": "^2.0.5",
-    "release-it": "^15.5.1",
+    "release-it": "^15.6.0",
     "treeify": "^1.1.0"
   },
   "main": "index.js",
