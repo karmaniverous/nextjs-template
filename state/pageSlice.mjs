@@ -13,15 +13,18 @@ export const PAGES = {
 const initialState = {
   baseUrl: null,
   comingSoon:
-    process.env.NEXT_PUBLIC_COMING_SOON === '1' &&
+    process.env.COMING_SOON === '1' &&
     process.env.NEXT_PUBLIC_VERCEL_ENV !== 'preview',
   currentPage: null,
   logoutUrl: null,
   pushRoute: null,
   sidebarVisible: false,
-  siteName: `${process.env.NEXT_PUBLIC_SITE_TOKEN}${
-    process.env.NEXT_PUBLIC_VERCEL_ENV === 'preview'
-      ? ` ${process.env.NEXT_PUBLIC_PREVIEW_TOKEN}`
+  siteName: `${process.env.SITE_NAME_TOKEN}${
+    process.env.NEXT_PUBLIC_VERCEL_ENV === 'preview' &&
+    process.env.SITE_VERCEL_PREVIEW_TOKEN
+      ? ` ${process.env.SITE_VERCEL_PREVIEW_TOKEN}`
+      : process.env.SITE_ENV_TOKEN
+      ? ` ${process.env.SITE_ENV_TOKEN}`
       : ''
   }`,
 };
