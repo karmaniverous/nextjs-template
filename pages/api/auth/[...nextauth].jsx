@@ -18,11 +18,12 @@ export const authOptions = {
   providers: [
     CognitoProvider({
       checks: 'nonce',
-      clientId: process.env.NEXT_AUTH_COGNITO_CLIENT_ID,
-      clientSecret: process.env.NEXT_AUTH_COGNITO_CLIENT_SECRET,
-      issuer: `https://cognito-idp.${process.env.NEXT_AUTH_COGNITO_REGION}.amazonaws.com/${process.env.NEXT_AUTH_COGNITO_USER_POOL_ID}`,
+      clientId: process.env.NEXTAUTH_COGNITO_CLIENT_ID,
+      clientSecret: process.env.NEXTAUTH_COGNITO_CLIENT_SECRET,
+      issuer: `https://cognito-idp.${process.env.NEXTAUTH_COGNITO_REGION}.amazonaws.com/${process.env.NEXTAUTH_COGNITO_USER_POOL_ID}`,
     }),
     // ...add more providers here
   ],
+  secret: process.env.NEXTAUTH_SECRET,
 };
 export default NextAuth(authOptions);

@@ -1,6 +1,7 @@
-import webpack from 'webpack';
+import { getDotenvSync } from '@karmaniverous/get-dotenv';
 import NextBundleAnalyzer from '@next/bundle-analyzer';
 import path from 'path';
+import webpack from 'webpack';
 import withLess from 'next-with-less';
 
 const webpackReplace = (pattern, replace) =>
@@ -13,6 +14,10 @@ const webpackReplace = (pattern, replace) =>
   });
 
 const nextConfig = {
+  env: getDotenvSync({
+    env: process.env.ENV ?? 'dev',
+    path: './env',
+  }),
   lessLoaderOptions: {
     lessOptions: { math: 'always' },
   },
