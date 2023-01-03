@@ -1,5 +1,6 @@
 // npm imports
 import Link from 'next/link';
+import { useSelector } from 'react-redux';
 import { Grid, Header, Image } from 'semantic-ui-react';
 
 // component imports
@@ -7,6 +8,8 @@ import SidebarButton from './sidebar/SidebarButton';
 import SessionDropdown from '../session/SessionDropdown';
 
 const PageHeader = () => {
+  const comingSoon = useSelector((state) => state.page.comingSoon);
+
   return (
     <Grid padded="vertically">
       <Grid.Row>
@@ -29,7 +32,7 @@ const PageHeader = () => {
           only="computer"
           textAlign="right"
         >
-          <SessionDropdown />
+          {comingSoon ? <SessionDropdown /> : null}
         </Grid.Column>
 
         <Grid.Column
