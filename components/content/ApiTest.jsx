@@ -8,10 +8,6 @@ import ApiQuery from './ApiQuery';
 import ScrollTarget from '../page/ScrollTarget';
 const ScrollSegment = ScrollTarget(Segment);
 
-const remoteBaseUrl = `https://aws-api-template.karmanivero.us/v0${
-  process.env.NODE_ENV === 'development' ? '-dev' : ''
-}`;
-
 const ApiTest = ({ log }) => {
   // Get page state.
   const baseUrl = useSelector((state) => state.page.baseUrl);
@@ -33,7 +29,11 @@ const ApiTest = ({ log }) => {
       <ScrollSegment name="remote-public-api">
         <Header as="h3">Remote Public API Endpoint</Header>
 
-        <ApiQuery log={log} method="get" url={`${remoteBaseUrl}/hello`} />
+        <ApiQuery
+          log={log}
+          method="get"
+          url={`${process.env.AWS_API_BASE_URL}/hello`}
+        />
       </ScrollSegment>
 
       <ScrollSegment name="remote-private-api">
@@ -43,7 +43,7 @@ const ApiTest = ({ log }) => {
           authenticate
           log={log}
           method="get"
-          url={`${remoteBaseUrl}/secure-hello`}
+          url={`${process.env.AWS_API_BASE_URL}/secure-hello`}
         />
       </ScrollSegment>
     </>

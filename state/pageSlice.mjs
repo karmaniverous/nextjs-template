@@ -12,20 +12,13 @@ export const PAGES = {
 // Set initial state.
 const initialState = {
   baseUrl: null,
-  comingSoon:
-    process.env.COMING_SOON === '1' &&
-    process.env.NEXT_PUBLIC_VERCEL_ENV !== 'preview',
+  comingSoon: process.env.COMING_SOON === '1',
   currentPage: null,
   logoutUrl: null,
   pushRoute: null,
   sidebarVisible: false,
   siteName: `${process.env.SITE_NAME_TOKEN}${
-    process.env.NEXT_PUBLIC_VERCEL_ENV === 'preview' &&
-    process.env.SITE_VERCEL_PREVIEW_TOKEN
-      ? ` ${process.env.SITE_VERCEL_PREVIEW_TOKEN}`
-      : process.env.SITE_ENV_TOKEN
-      ? ` ${process.env.SITE_ENV_TOKEN}`
-      : ''
+    process.env.SITE_ENV_TOKEN ? ` ${process.env.SITE_ENV_TOKEN}` : ''
   }`,
 };
 
