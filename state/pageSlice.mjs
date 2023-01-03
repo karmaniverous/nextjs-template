@@ -12,9 +12,7 @@ export const PAGES = {
 // Set initial state.
 const initialState = {
   baseUrl: null,
-  comingSoon:
-    process.env.COMING_SOON === '1' &&
-    process.env.NEXT_PUBLIC_VERCEL_ENV !== 'preview',
+  comingSoon: process.env.COMING_SOON === '1',
   currentPage: null,
   logoutUrl: null,
   pushRoute: null,

@@ -32,7 +32,7 @@ const PageHeader = () => {
           only="computer"
           textAlign="right"
         >
-          {comingSoon ? <SessionDropdown /> : null}
+          {comingSoon ? null : <SessionDropdown />}
         </Grid.Column>
 
         <Grid.Column
