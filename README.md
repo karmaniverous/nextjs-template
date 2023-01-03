@@ -25,7 +25,7 @@ the following features:
   [AWS API Template](https://github.com/karmaniverous/aws-api-template) on the
   back end.
 
-- Fully integrated applicaion state management with the
+- Fully integrated application state management with the
   [Redux Toolkit](https://redux-toolkit.js.org/), including support for
   difficult-to-serialize types like `Date` & `BigInt`.
 
