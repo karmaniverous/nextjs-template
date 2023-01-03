@@ -20,12 +20,7 @@ const initialState = {
   pushRoute: null,
   sidebarVisible: false,
   siteName: `${process.env.SITE_NAME_TOKEN}${
-    process.env.NEXT_PUBLIC_VERCEL_ENV === 'preview' &&
-    process.env.SITE_VERCEL_PREVIEW_TOKEN
-      ? ` ${process.env.SITE_VERCEL_PREVIEW_TOKEN}`
-      : process.env.SITE_ENV_TOKEN
-      ? ` ${process.env.SITE_ENV_TOKEN}`
-      : ''
+    process.env.SITE_ENV_TOKEN ? ` ${process.env.SITE_ENV_TOKEN}` : ''
   }`,
 };
 
