@@ -14,13 +14,14 @@ import SidebarLinks from './SidebarLinks';
 
 const SidebarItems = () => {
   // Get page state.
+  const comingSoon = useSelector((state) => state.page.comingSoon);
   const siteName = useSelector((state) => state.page.siteName);
 
   return (
     <>
       <Menu.Item header>{siteName}</Menu.Item>
 
-      <SessionMenuItem />
+      {comingSoon ? null : <SessionMenuItem />}
 
       <PageMenuItem page={PAGES.HOME}>Home</PageMenuItem>
 
