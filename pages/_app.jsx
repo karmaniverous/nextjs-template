@@ -261,8 +261,8 @@ MyApp.getInitialProps = wrapper.getInitialAppProps(
         dispatch(setBaseUrl(baseUrl));
         dispatch(
           setLogoutUrl(
-            `https://${process.env.NEXT_AUTH_COGNITO_DOMAIN}/logout?client_id=${
-              process.env.NEXT_AUTH_COGNITO_CLIENT_ID
+            `https://${process.env.NEXTAUTH_COGNITO_DOMAIN}/logout?client_id=${
+              process.env.NEXTAUTH_COGNITO_CLIENT_ID
             }&logout_uri=${encodeURIComponent(`${baseUrl}`)}`
           )
         );
