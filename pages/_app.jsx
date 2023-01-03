@@ -257,7 +257,7 @@ MyApp.getInitialProps = wrapper.getInitialAppProps(
           req.headers['x-forwarded-proto'] || req.socket?.encrypted
             ? 'https'
             : 'http'
-        }://${req.headers.host}`;
+        }://${req.headers['x-forwarded-host'] ?? req.headers.host}`;
         dispatch(setBaseUrl(baseUrl));
         dispatch(
           setLogoutUrl(
