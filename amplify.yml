@@ -1,0 +1,21 @@
+
+version: 1
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - npm ci
+        - cat env/.env.$ENV >> .env
+        - echo "ENV=$ENV" >> .env
+        - echo "NEXTAUTH_COGNITO_CLIENT_SECRET=$NEXTAUTH_COGNITO_CLIENT_SECRET" >> .env
+        - echo "NEXTAUTH_SECRET=$NEXTAUTH_SECRET" >> .env
+    build:
+      commands:
+        - npm run build
+  artifacts:
+    baseDirectory: .next
+    files:
+      - '**/*'
+  cache:
+    paths:
+      - node_modules/**/*
