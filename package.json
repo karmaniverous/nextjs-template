@@ -4,7 +4,7 @@
   "author": "@karmaniverous",
   "license": "BSD-3-Clause",
   "dependencies": {
-    "@karmaniverous/get-dotenv": "^0.1.0",
+    "@karmaniverous/get-dotenv": "^0.1.1",
     "@karmaniverous/merge-delimited-lists": "^0.1.2",
     "@karmaniverous/serify-deserify": "^1.3.4",
     "@reduxjs/toolkit": "^1.9.1",
