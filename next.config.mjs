@@ -20,7 +20,7 @@ const nextConfig = {
   env: {
     ...getDotenvSync({
       env: process.env.ENV ?? 'dev',
-      path: './env',
+      paths: ['./env'],
     }),
     NEXT_PUBLIC_NPM_PACKAGE_VERSION: packagejson.version,
   },
