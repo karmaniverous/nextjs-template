@@ -4,6 +4,9 @@ import path from 'path';
 import webpack from 'webpack';
 import withLess from 'next-with-less';
 
+// Import package.json to get version number.
+import packagejson from './package.json' assert { type: 'json' };
+
 const webpackReplace = (pattern, replace) =>
   new webpack.NormalModuleReplacementPlugin(pattern, (resource) => {
     const replacement = resource.request.replace(pattern, replace);
@@ -14,10 +17,13 @@ const webpackReplace = (pattern, replace) =>
   });
 
 const nextConfig = {
-  env: getDotenvSync({
-    env: process.env.ENV ?? 'dev',
-    path: './env',
-  }),
+  env: {
+    ...getDotenvSync({
+      env: process.env.ENV ?? 'dev',
+      paths: ['./env'],
+    }),
+    NEXT_PUBLIC_NPM_PACKAGE_VERSION: packagejson.version,
+  },
   lessLoaderOptions: {
     lessOptions: { math: 'always' },
   },
