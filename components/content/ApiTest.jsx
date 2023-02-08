@@ -32,7 +32,7 @@ const ApiTest = ({ log }) => {
         <ApiQuery
           log={log}
           method="get"
-          url={`${process.env.AWS_API_BASE_URL}/hello`}
+          url={`${process.env.NEXT_PUBLIC_AWS_API_BASE_URL}/hello`}
         />
       </ScrollSegment>
 
@@ -43,7 +43,7 @@ const ApiTest = ({ log }) => {
           authenticate
           log={log}
           method="get"
-          url={`${process.env.AWS_API_BASE_URL}/secure-hello`}
+          url={`${process.env.NEXT_PUBLIC_AWS_API_BASE_URL}/secure-hello`}
         />
       </ScrollSegment>
     </>
