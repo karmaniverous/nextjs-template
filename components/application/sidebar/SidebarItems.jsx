@@ -6,10 +6,10 @@ import { Menu } from 'semantic-ui-react';
 import { PAGES } from '../../../state/pageSlice.mjs';
 
 // component imports
-import RenderIf from '../RenderIf';
+import RenderIf from '../util/RenderIf';
 import PageMenuItem from './PageMenuItem';
 import ScrollMenuItem from './ScrollMenuItem';
-import SessionMenuItem from '../../session/SessionMenuItem';
+import SessionMenuItem from '../session/SessionMenuItem';
 import SidebarLinks from './SidebarLinks';
 
 const SidebarItems = () => {

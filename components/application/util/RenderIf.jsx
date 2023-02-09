@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 
 // redux imports
-import { PAGES } from '../../state/pageSlice.mjs';
+import { PAGES } from '../../../state/pageSlice.mjs';
 
 const RenderIf = ({ children, page, authenticated }) => {
   // Get page state.

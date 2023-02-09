@@ -5,7 +5,7 @@ import { Header, Segment } from 'semantic-ui-react';
 
 // component imports
 import ApiQuery from './ApiQuery';
-import ScrollTarget from '../page/ScrollTarget';
+import ScrollTarget from '../application/util/ScrollTarget';
 const ScrollSegment = ScrollTarget(Segment);
 
 const ApiTest = ({ log }) => {

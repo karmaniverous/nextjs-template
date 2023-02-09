@@ -20,9 +20,9 @@ import {
 } from '../state/pageSlice.mjs';
 
 // component imports
-import PageFooter from '../components/page/PageFooter';
-import PageHeader from '../components/page/PageHeader';
-import SidebarItems from '../components/page/sidebar/SidebarItems';
+import PageFooter from '../components/application/layout/PageFooter';
+import PageHeader from '../components/application/layout/PageHeader';
+import SidebarItems from '../components/application/sidebar/SidebarItems';
 
 // css imports
 import 'semantic-ui-less/semantic.less';

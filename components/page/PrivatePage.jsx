@@ -8,8 +8,8 @@ import { Header, Segment } from 'semantic-ui-react';
 import { PAGES, setCurrentPage } from '../../state/pageSlice.mjs';
 
 // component imports
-import ApiTest from './ApiTest';
-import ScrollTarget from '../page/ScrollTarget';
+import ApiTest from '../content/ApiTest';
+import ScrollTarget from '../application/util/ScrollTarget';
 const ScrollSegment = ScrollTarget(Segment);
 
 // TODO: pass game index in as prop.

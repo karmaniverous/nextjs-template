@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { Grid, Header, Image } from 'semantic-ui-react';
 
 // component imports
-import SidebarButton from './sidebar/SidebarButton';
+import SidebarButton from '../sidebar/SidebarButton';
 import SessionDropdown from '../session/SessionDropdown';
 
 const PageHeader = () => {
