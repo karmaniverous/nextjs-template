@@ -1,6 +1,4 @@
-import { withAuth } from 'next-auth/middleware';
-
-export const middleware = withAuth({});
+export { default as middleware } from 'next-auth/middleware';
 
 export const config = {
   matcher: ['/private'],
