@@ -13,6 +13,8 @@ const truncate = (obj, maxLen = 20) => {
       truncate(obj[key]);
     }
   }
+
+  return obj;
 };
 
 export const authOptions = {
