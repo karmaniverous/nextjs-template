@@ -1,17 +1,33 @@
+import _ from 'lodash';
 import NextAuth from 'next-auth';
 import CognitoProvider from 'next-auth/providers/cognito';
+
+// Recursively truncate long string properties of an object.
+const truncate = (obj, maxLen = 20) => {
+  for (const key in obj) {
+    if (_.isString(obj[key]) && obj[key].length > maxLen) {
+      obj[key] = `${obj[key].slice(0, Math.trunc(maxLen / 2))}...${obj[
+        key
+      ].slice(-Math.trunc(maxLen / 2))}`;
+    } else if (_.isPlainObject(obj[key])) {
+      truncate(obj[key]);
+    }
+  }
+};
 
 export const authOptions = {
   callbacks: {
     jwt: async ({ token, user, account, profile, isNewUser }) => {
-      console.log({
-        callback: 'jwt',
-        token,
-        user,
-        account,
-        profile,
-        isNewUser,
-      });
+      console.log(
+        truncate({
+          callback: 'jwt',
+          token,
+          user,
+          account,
+          profile,
+          isNewUser,
+        })
+      );
 
       if (account) {
         token.id_token = account.id_token;
@@ -21,13 +37,13 @@ export const authOptions = {
     },
 
     redirect: async ({ url, baseUrl }) => {
-      console.log({ callback: 'redirect', url, baseUrl });
+      console.log(truncate({ callback: 'redirect', url, baseUrl }));
 
       return baseUrl;
     },
 
     session: async ({ session, user, token }) => {
-      console.log({ callback: 'session', session, user, token });
+      console.log(truncate({ callback: 'session', session, user, token }));
 
       session.id_token = token.id_token;
 
@@ -35,14 +51,16 @@ export const authOptions = {
     },
 
     signIn: async ({ user, account, profile, email, credentials }) => {
-      console.log({
-        callback: 'signIn',
-        user,
-        account,
-        profile,
-        email,
-        credentials,
-      });
+      console.log(
+        truncate({
+          callback: 'signIn',
+          user,
+          account,
+          profile,
+          email,
+          credentials,
+        })
+      );
 
       return true;
     },
