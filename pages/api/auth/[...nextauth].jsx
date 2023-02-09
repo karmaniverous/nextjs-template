@@ -5,6 +5,7 @@ export const authOptions = {
   // Configure one or more authentication providers
   callbacks: {
     async jwt({ token, account }) {
+      console.log({ token, account });
       if (account) {
         token.id_token = account.id_token;
       }
