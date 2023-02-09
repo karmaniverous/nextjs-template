@@ -1,5 +1,5 @@
 // component imports
-import HomePage from '../components/content/HomePage';
+import HomePage from '../components/page/HomePage';
 
 const HomeRoute = () => {
   return <HomePage />;

@@ -2,7 +2,7 @@
 import { Menu, Segment } from 'semantic-ui-react';
 
 // component imports
-import SidebarLinks from './sidebar/SidebarLinks';
+import SidebarLinks from '../sidebar/SidebarLinks';
 
 const PageFooter = () => {
   return (
