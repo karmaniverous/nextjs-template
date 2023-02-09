@@ -2,21 +2,53 @@ import NextAuth from 'next-auth';
 import CognitoProvider from 'next-auth/providers/cognito';
 
 export const authOptions = {
-  // Configure one or more authentication providers
   callbacks: {
-    async jwt({ token, account }) {
-      console.log({ token, account });
+    jwt: async ({ token, user, account, profile, isNewUser }) => {
+      console.log({
+        callback: 'jwt',
+        token,
+        user,
+        account,
+        profile,
+        isNewUser,
+      });
+
       if (account) {
         token.id_token = account.id_token;
       }
+
       return token;
     },
-    async session({ session, token }) {
-      console.log({ session, token });
+
+    redirect: async ({ url, baseUrl }) => {
+      console.log({ callback: 'redirect', url, baseUrl });
+
+      return baseUrl;
+    },
+
+    session: async ({ session, user, token }) => {
+      console.log({ callback: 'session', session, user, token });
+
       session.id_token = token.id_token;
+
       return session;
     },
+
+    signIn: async ({ user, account, profile, email, credentials }) => {
+      console.log({
+        callback: 'signIn',
+        user,
+        account,
+        profile,
+        email,
+        credentials,
+      });
+
+      return true;
+    },
   },
+
+  // Configure one or more authentication providers
   providers: [
     CognitoProvider({
       checks: 'nonce',
