@@ -1,8 +1,8 @@
 // component imports
-import PrivatePage from '../components/content/PrivatePage';
+import PrivatePage from '../components/page/PrivatePage';
 
-const HomeRoute = () => {
+const PrivateRoute = () => {
   return <PrivatePage />;
 };
 
-export default HomeRoute;
+export default PrivateRoute;
