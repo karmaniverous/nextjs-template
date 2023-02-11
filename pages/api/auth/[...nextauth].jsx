@@ -1,20 +1,59 @@
 import NextAuth from 'next-auth';
 import CognitoProvider from 'next-auth/providers/cognito';
 
+import { Logger } from '@karmaniverous/edge-logger';
+const logger = new Logger();
+
 export const authOptions = {
-  // Configure one or more authentication providers
   callbacks: {
-    async jwt({ token, account }) {
-      if (account) {
-        token.id_token = account.id_token;
+    jwt: async (input) => {
+      logger
+        .truncate(100, '*** NextAuth jwt callback ***', {
+          ...input,
+        })
+        .debug();
+
+      if (input.account) {
+        input.token.id_token = input.account.id_token;
       }
-      return token;
+
+      return input.token;
     },
-    async session({ session, token }) {
-      session.id_token = token.id_token;
-      return session;
+
+    redirect: async (input) => {
+      logger
+        .truncate(100, '*** NextAuth redirect callback ***', {
+          ...input,
+        })
+        .debug();
+
+      return input.baseUrl;
+    },
+
+    session: async (input) => {
+      logger
+        .truncate(100, '*** NextAuth session callback ***', {
+          ...input,
+        })
+        .debug();
+
+      input.session.id_token = input.token.id_token;
+
+      return input.session;
+    },
+
+    signIn: async (input) => {
+      logger
+        .truncate(100, '*** NextAuth signIn callback ***', {
+          ...input,
+        })
+        .debug();
+
+      return true;
     },
   },
+
+  // Configure one or more authentication providers
   providers: [
     CognitoProvider({
       checks: 'nonce',
@@ -26,4 +65,10 @@ export const authOptions = {
   ],
   secret: process.env.NEXTAUTH_SECRET,
 };
+
+logger.debug('*** NextAuth options ***', {
+  providers: authOptions.providers,
+  secret: authOptions.secret,
+});
+
 export default NextAuth(authOptions);

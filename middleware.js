@@ -1,4 +1,21 @@
-export { withAuth as default } from 'next-auth/middleware';
+import { withAuth } from 'next-auth/middleware';
+
+import { Logger } from '@karmaniverous/edge-logger';
+const logger = new Logger();
+
+export default withAuth(
+  async (req, res) => {
+    logger.debug('*** middleware withAuth ***', { req, res });
+  },
+  {
+    callbacks: {
+      authorized: (input) => {
+        logger.debug('*** middleware authorized ***', { ...input });
+        return true;
+      },
+    },
+  }
+);
 
 export const config = {
   matcher: ['/private'],
