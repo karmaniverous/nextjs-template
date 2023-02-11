@@ -4,9 +4,6 @@ import path from 'path';
 import webpack from 'webpack';
 import withLess from 'next-with-less';
 
-// Import package.json to get version number.
-import packagejson from './package.json' assert { type: 'json' };
-
 const webpackReplace = (pattern, replace) =>
   new webpack.NormalModuleReplacementPlugin(pattern, (resource) => {
     const replacement = resource.request.replace(pattern, replace);
@@ -15,6 +12,9 @@ const webpackReplace = (pattern, replace) =>
 
     resource.request = replacement;
   });
+
+// Import package.json to get version number.
+import packagejson from './package.json' assert { type: 'json' };
 
 const nextConfig = {
   env: {
