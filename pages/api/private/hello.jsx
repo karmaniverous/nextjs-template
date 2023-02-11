@@ -2,8 +2,14 @@
 import { getServerSession } from 'next-auth/next';
 import { authOptions } from '../auth/[...nextauth]';
 
+import { Logger } from '@karmaniverous/edge-logger';
+const logger = new Logger();
+
 export default async (req, res) => {
+  logger.debug('*** API private/hello ***', { req });
+
   const session = await getServerSession(req, res, authOptions);
+  logger.debug('*** API private/hello session ***', { session });
 
   if (!session) {
     return res.status(401).json({ message: 'Unauthorized.' });

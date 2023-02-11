@@ -1,68 +1,53 @@
-import _ from 'lodash';
 import NextAuth from 'next-auth';
 import CognitoProvider from 'next-auth/providers/cognito';
 
-// Recursively truncate long string properties of an object.
-const truncate = (obj, maxLen = 20) => {
-  for (const key in obj) {
-    if (_.isString(obj[key]) && obj[key].length > maxLen) {
-      obj[key] = `${obj[key].slice(0, Math.trunc(maxLen / 2))}...${obj[
-        key
-      ].slice(-Math.trunc(maxLen / 2))}`;
-    } else if (_.isPlainObject(obj[key])) {
-      truncate(obj[key]);
-    }
-  }
-
-  return obj;
-};
+import { Logger } from '@karmaniverous/edge-logger';
+const logger = new Logger();
 
 export const authOptions = {
   callbacks: {
-    jwt: async ({ token, user, account, profile, isNewUser }) => {
-      console.log(
-        truncate({
-          callback: 'jwt',
-          token,
-          user,
-          account,
-          profile,
-          isNewUser,
+    jwt: async (input) => {
+      logger
+        .truncate(100, '*** NextAuth jwt callback ***', {
+          ...input,
         })
-      );
+        .debug();
 
-      if (account) {
-        token.id_token = account.id_token;
+      if (input.account) {
+        input.token.id_token = input.account.id_token;
       }
 
-      return token;
+      return input.token;
     },
 
-    redirect: async ({ url, baseUrl }) => {
-      console.log(truncate({ callback: 'redirect', url, baseUrl }));
-
-      return baseUrl;
-    },
-
-    session: async ({ session, user, token }) => {
-      console.log(truncate({ callback: 'session', session, user, token }));
-
-      session.id_token = token.id_token;
-
-      return session;
-    },
-
-    signIn: async ({ user, account, profile, email, credentials }) => {
-      console.log(
-        truncate({
-          callback: 'signIn',
-          user,
-          account,
-          profile,
-          email,
-          credentials,
+    redirect: async (input) => {
+      logger
+        .truncate(100, '*** NextAuth redirect callback ***', {
+          ...input,
         })
-      );
+        .debug();
+
+      return input.baseUrl;
+    },
+
+    session: async (input) => {
+      logger
+        .truncate(100, '*** NextAuth session callback ***', {
+          ...input,
+        })
+        .debug();
+
+      input.session.id_token = input.token.id_token;
+
+      return input.session;
+    },
+
+    signIn: async (input) => {
+      logger
+        .truncate(100, '*** NextAuth signIn callback ***', {
+          ...input,
+        })
+        .debug();
 
       return true;
     },
@@ -80,4 +65,10 @@ export const authOptions = {
   ],
   secret: process.env.NEXTAUTH_SECRET,
 };
+
+logger.debug('*** NextAuth options ***', {
+  providers: authOptions.providers,
+  secret: authOptions.secret,
+});
+
 export default NextAuth(authOptions);

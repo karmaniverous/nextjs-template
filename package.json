@@ -4,6 +4,7 @@
   "author": "@karmaniverous",
   "license": "BSD-3-Clause",
   "dependencies": {
+    "@karmaniverous/edge-logger": "^0.0.2",
     "@karmaniverous/get-dotenv": "^0.2.3",
     "@karmaniverous/merge-delimited-lists": "^0.1.3",
     "@karmaniverous/serify-deserify": "^1.3.6",
@@ -43,7 +44,7 @@
     "chai-as-promised": "^7.1.1",
     "chai-match-pattern": "^1.3.0",
     "cross-env": "^7.0.3",
-    "eslint": "^8.33.0",
+    "eslint": "^8.34.0",
     "eslint-config-standard": "^17.0.0",
     "eslint-plugin-mocha": "^10.1.0",
     "eslint-plugin-promise": "^6.1.1",
