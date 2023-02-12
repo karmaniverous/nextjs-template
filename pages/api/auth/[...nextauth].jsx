@@ -2,7 +2,7 @@ import NextAuth from 'next-auth';
 import CognitoProvider from 'next-auth/providers/cognito';
 
 import { Logger } from '@karmaniverous/edge-logger';
-const logger = new Logger();
+const logger = new Logger({ maxLevel: process.env.LOG_LEVEL });
 
 export const authOptions = {
   callbacks: {

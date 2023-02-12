@@ -1,5 +1,5 @@
 import { Logger } from '@karmaniverous/edge-logger';
-const logger = new Logger();
+const logger = new Logger({ maxLevel: process.env.LOG_LEVEL });
 
 export default async (req, res) => {
   logger.debug('*** API hello ***', { req });
